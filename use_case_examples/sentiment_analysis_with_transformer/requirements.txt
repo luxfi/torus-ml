@@ -1,0 +1,5 @@
+torus-ml
+jupyter
+pandas
+transformers
+matplotlib
