@@ -11,7 +11,7 @@ Torus ML enables training and inference on encrypted data without decryption. Pa
 - **Privacy-preserving ML**: Train models on encrypted data
 - **Quantization-aware training**: Optimized for FHE computation
 - **scikit-learn compatible**: Familiar API for ML practitioners
-- **GPU acceleration**: Leverages [luxfi/fhe-gpu](https://github.com/luxfi/fhe-gpu)
+- **GPU acceleration**: native CUDA / Metal / WebGPU via the Torus compiler over the [luxfi/gpu](https://github.com/luxfi/gpu) runtime
 
 ## Installation
 
