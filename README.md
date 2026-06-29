@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/hero.svg" alt="torus-ml" width="880"></p>
+
 # Torus ML
 
 Machine Learning framework for encrypted data using Fully Homomorphic Encryption.
