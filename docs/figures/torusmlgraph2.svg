@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+  <style>
+    .card{fill:#fff;stroke:#d7dce3;stroke-width:2}
+    .title{font-size:52px;font-weight:700;fill:#11161d}
+    .rule{fill:#4c6ef5}
+    .box{stroke:#1b2430;stroke-width:3}
+    .art{fill:#eef2f7}
+    .api{fill:#d7e7fb}
+    .enc{fill:#fbdcdc}
+    .prim{fill:#2b3a67}
+    .lbl{font-size:24px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .lblw{font-size:28px;font-weight:700;fill:#fff;text-anchor:middle}
+    .cap{font-size:26px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .capl{font-size:26px;font-weight:700;fill:#11161d}
+    .sm{font-size:20px;font-weight:700;fill:#11161d}
+    .node{fill:#d4d9e0;stroke:#1b2430;stroke-width:3}
+    .flow{stroke:#1b2430;stroke-width:4;fill:none;marker-end:url(#a)}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1b2430"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#fff"/>
+  <text class="title" x="60" y="96">SaaS deployed in the Cloud</text>
+  <rect class="rule" x="60" y="128" width="1800" height="8"/>
+  <rect class="card" x="60" y="150" width="1800" height="860"/>
+
+  <text class="capl" x="208" y="245">Send to client</text>
+  <circle class="node" cx="285" cy="298" r="26"/>
+  <path class="flow" d="M475 298 H322"/>
+  <rect class="box art" x="475" y="250" width="225" height="96"/>
+  <text class="lbl" x="587" y="306">Client.zip</text>
+
+  <circle class="node" cx="287" cy="438" r="26"/>
+  <path class="flow" d="M324 438 H465"/>
+  <text class="capl" x="208" y="516">Evaluation key</text>
+  <text class="capl" x="208" y="548">from the client</text>
+
+  <rect class="box api" x="475" y="390" width="225" height="97"/>
+  <text class="lbl" x="587" y="426">Evaluation key</text>
+  <text class="lbl" x="587" y="456">management API</text>
+  <ellipse cx="540" cy="518" rx="14" ry="5" fill="none" stroke="#1b2430" stroke-width="3"/>
+  <path d="M526 518 v18 a14 5 0 0 0 28 0 v-18" fill="none" stroke="#1b2430" stroke-width="3"/>
+  <text class="sm" x="566" y="540">Database</text>
+
+  <path class="flow" d="M700 438 H760"/>
+  <rect class="box art" x="770" y="390" width="225" height="97"/>
+  <text class="lbl" x="882" y="446">User evaluation key</text>
+
+  <path class="flow" d="M995 438 H1085 V552"/>
+
+  <rect class="box art" x="1087" y="257" width="223" height="98"/>
+  <text class="lbl" x="1198" y="313">Server.zip</text>
+  <path class="flow" d="M1198 355 V552"/>
+
+  <rect class="box api" x="1030" y="562" width="220" height="86"/>
+  <text class="lbl" x="1140" y="612">API to run inference</text>
+
+  <path class="flow" d="M1430 588 H1260"/>
+  <path class="flow" d="M1250 625 H1420"/>
+  <rect class="box prim" x="1430" y="562" width="270" height="86"/>
+  <text class="lblw" x="1565" y="616">Torus stack</text>
+
+  <circle class="node" cx="925" cy="912" r="26"/>
+  <text class="cap" x="800" y="922">User request</text>
+  <path class="flow" d="M925 875 V818"/>
+  <rect class="box enc" x="860" y="738" width="130" height="76"/>
+  <text class="lbl" x="925" y="770">Encrypted</text>
+  <text class="lbl" x="925" y="798">data</text>
+  <path class="flow" d="M990 776 H1075 V658"/>
+
+  <path class="flow" d="M1195 648 V776 H1280"/>
+  <rect class="box enc" x="1290" y="738" width="130" height="76"/>
+  <text class="lbl" x="1355" y="770">Encrypted</text>
+  <text class="lbl" x="1355" y="798">result</text>
+  <path class="flow" d="M1355 814 V876"/>
+  <circle class="node" cx="1355" cy="912" r="26"/>
+  <text class="cap" x="1490" y="922">Response</text>
+</svg>

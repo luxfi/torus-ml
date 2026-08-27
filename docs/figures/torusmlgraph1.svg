@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+  <style>
+    .card{fill:#fff;stroke:#d7dce3;stroke-width:2}
+    .title{font-size:52px;font-weight:700;fill:#11161d}
+    .rule{fill:#4c6ef5}
+    .box{stroke:#1b2430;stroke-width:3}
+    .art{fill:#eef2f7}
+    .prim{fill:#2b3a67}
+    .lbl{font-size:24px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .lblw{font-size:30px;font-weight:700;fill:#fff;text-anchor:middle}
+    .cap{font-size:26px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .hdg{font-size:32px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .node{fill:#d4d9e0;stroke:#1b2430;stroke-width:3}
+    .flow{stroke:#1b2430;stroke-width:4;fill:none;marker-end:url(#a)}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1b2430"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#fff"/>
+  <text class="title" x="60" y="96">Developer with Torus ML</text>
+  <rect class="rule" x="60" y="128" width="1800" height="8"/>
+  <rect class="card" x="60" y="150" width="1800" height="860"/>
+
+  <rect class="box art" x="240" y="325" width="195" height="100"/>
+  <text class="lbl" x="337" y="383">Dataset</text>
+  <rect class="box art" x="240" y="492" width="195" height="100"/>
+  <text class="lbl" x="337" y="550">Model-type</text>
+  <rect class="box art" x="240" y="658" width="195" height="125"/>
+  <text class="lbl" x="337" y="710">Hyper-</text>
+  <text class="lbl" x="337" y="742">parameters</text>
+
+  <path class="flow" d="M435 375 H545 V500 H620"/>
+  <path class="flow" d="M435 542 H620"/>
+  <path class="flow" d="M435 720 H545 V585 H620"/>
+
+  <text class="hdg" x="855" y="372">Model fine tuning</text>
+  <path d="M690 388 H1020" stroke="#11161d" stroke-width="3"/>
+
+  <rect class="box prim" x="630" y="452" width="450" height="175"/>
+  <text class="lblw" x="855" y="551">Torus ML</text>
+
+  <path d="M828 672 a30 30 0 1 1 24 12" stroke="#1b2430" stroke-width="6" fill="none" marker-end="url(#a)"/>
+  <text class="cap" x="855" y="742">Redo until satisfied</text>
+  <text class="cap" x="855" y="776">with the accuracy</text>
+  <text class="cap" x="855" y="810">and perfs</text>
+
+  <path class="flow" d="M1080 540 H1130 V400 H1190"/>
+  <path class="flow" d="M1080 540 H1130 V648 H1190"/>
+
+  <rect class="box art" x="1190" y="360" width="270" height="80"/>
+  <text class="lbl" x="1325" y="408">Server.zip</text>
+  <text class="cap" x="1325" y="482">Includes the</text>
+  <text class="cap" x="1325" y="514">compiled model</text>
+
+  <rect class="box art" x="1190" y="608" width="270" height="80"/>
+  <text class="lbl" x="1325" y="656">Client.zip</text>
+  <text class="cap" x="1325" y="730">Includes the</text>
+  <text class="cap" x="1325" y="762">cryptosystem</text>
+  <text class="cap" x="1325" y="794">parameters</text>
+
+  <path class="flow" d="M1460 400 H1600"/>
+  <circle class="node" cx="1637" cy="400" r="26"/>
+  <text class="cap" x="1637" y="345">Deploy on server</text>
+
+  <path class="flow" d="M1460 648 H1600"/>
+  <circle class="node" cx="1637" cy="648" r="26"/>
+  <text class="cap" x="1637" y="570">Deploy on server</text>
+  <text class="cap" x="1637" y="602">or client</text>
+</svg>
