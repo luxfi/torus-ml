@@ -92,7 +92,7 @@ do
         rm -rf "${TMP_DIR}"
         mkdir "${TMP_DIR}"
         cd "${TMP_DIR}"
-        git clone https://github.com/lux-ai/torus-ml
+        git clone https://github.com/luxfi/torus-ml
         cd torus-ml
         make sync_env
         cd ../..

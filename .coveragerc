@@ -3,6 +3,6 @@
 omit = 
   src/torus/ml/deployment/deploy_to_docker.py
   src/torus/ml/deployment/server.py
-  # FIXME: https://github.com/lux-ai/torus-ml-internal/issues/3426
+  # FIXME: an internal tracker issue
   src/torus/ml/deployment/deploy_to_aws.py
   src/torus/ml/deployment/utils.py
