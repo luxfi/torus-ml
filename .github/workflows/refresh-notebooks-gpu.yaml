@@ -86,7 +86,7 @@ jobs:
           source .venv/bin/activate
           CP_VERSION=$(pip freeze | grep torus-fhe)
           pip uninstall -y torus-fhe
-          pip install --extra-index-url https://pypi.lux.network/gpu ${CP_VERSION}
+          pip install ${CP_VERSION}
 
       - name: Refresh Notebooks
         run: |
