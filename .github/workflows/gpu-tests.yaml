@@ -237,7 +237,7 @@ jobs:
           poetry run pip show torus-fhe || echo "torus-fhe not installed"
           TORUS_WITH_VERSION=$(poetry run pip freeze | grep torus-fhe)
           poetry run pip uninstall -y torus-fhe
-          poetry run pip install --extra-index-url https://pypi.lux.network/gpu $TORUS_WITH_VERSION
+          poetry run pip install $TORUS_WITH_VERSION
           poetry run pip show torus-fhe || echo "torus-fhe not installed"
 
       - name: 🚀 Run GPU Tests
