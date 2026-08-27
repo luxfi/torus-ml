@@ -105,7 +105,7 @@ def monkeypatched_compilation_configuration_init_for_codeblocks(
     self.enable_unsafe_features = True
     self.treat_warnings_as_errors = True
     self.use_insecure_key_cache = True
-    self.insecure_key_cache_location = "ConcretePythonKeyCache"
+    self.insecure_key_cache_location = "TorusPythonKeyCache"
 
 
 def pytest_sessionstart(session: pytest.Session):
@@ -159,7 +159,7 @@ def default_configuration():
         dump_artifacts_on_unexpected_failures=False,
         enable_unsafe_features=True,
         use_insecure_key_cache=True,
-        insecure_key_cache_location="ConcretePythonKeyCache",
+        insecure_key_cache_location="TorusPythonKeyCache",
         fhe_simulation=False,
         fhe_execution=True,
         compress_input_ciphertexts=os.environ.get("USE_INPUT_COMPRESSION", "1") == "1",
@@ -177,7 +177,7 @@ def simulation_configuration():
         dump_artifacts_on_unexpected_failures=False,
         enable_unsafe_features=True,
         use_insecure_key_cache=True,
-        insecure_key_cache_location="ConcretePythonKeyCache",
+        insecure_key_cache_location="TorusPythonKeyCache",
         fhe_simulation=True,
         fhe_execution=False,
         compress_input_ciphertexts=os.environ.get("USE_INPUT_COMPRESSION", "1") == "1",
@@ -298,8 +298,8 @@ def get_device():
     force_cuda = os.getenv("POETRY_RUN_GPU_TESTS") == "1"
 
     if force_cuda:
-        assert torus.compiler.check_gpu_available(), "[Concrete] GPU required but not detected."
-        assert torus.compiler.check_gpu_enabled(), "[Concrete] GPU detected but not enabled."
+        assert torus.compiler.check_gpu_available(), "[Torus] GPU required but not detected."
+        assert torus.compiler.check_gpu_enabled(), "[Torus] GPU detected but not enabled."
         assert torch.cuda.is_available(), "[PyTorch] CUDA not available."
         return "cuda"
     return "cpu"
@@ -337,8 +337,8 @@ def check_graph_has_no_input_output_tlu_impl(graph: CPGraph):
     check_graph_output_has_no_tlu_impl(graph)
 
 
-# To update when the feature becomes available Concrete
-# FIXME: https://github.com/luxfi/concrete-numpy-internal/issues/1714
+# To update when the feature becomes available Torus
+# FIXME: https://github.com/luxfi/torus-numpy-internal/issues/1714
 def check_circuit_has_no_tlu_impl(circuit: Circuit):
     """Check a circuit has no TLU."""
     if "apply_" in circuit.mlir and "_lookup_table" in circuit.mlir:
@@ -489,7 +489,7 @@ def load_data():
         For classifier, scikit-learn's make_classification() method is directly called.
 
         Args:
-            model_class (Callable): The Concrete ML model class to generate the data for.
+            model_class (Callable): The Torus ML model class to generate the data for.
             *args: Positional arguments to consider for generating the data.
             random_state (int): Determines random number generation for data-set creation.
             **kwargs: Keyword arguments to consider for generating the data.
@@ -534,7 +534,7 @@ def load_data():
             return tuple(generated_regression)
 
         raise ValueError(
-            "Model class type is unsupported. Expected a Concrete ML regressor or classifier, or "
+            "Model class type is unsupported. Expected a Torus ML regressor or classifier, or "
             f"a functool.partial version of it, but got {model_class}."
         )
 
@@ -543,7 +543,7 @@ def load_data():
 
 @pytest.fixture
 def check_is_good_execution_for_cml_vs_circuit():
-    """Compare quantized module or built-in inference vs Concrete circuit."""
+    """Compare quantized module or built-in inference vs Torus circuit."""
 
     def check_is_good_execution_for_cml_vs_circuit_impl(
         inputs: Union[tuple, numpy.ndarray],
@@ -556,7 +556,7 @@ def check_is_good_execution_for_cml_vs_circuit():
         Args:
             inputs (tuple, numpy.ndarray): inputs for the model.
             model (Callable, QuantizedModule, QuantizedTorchEstimatorMixin): either the
-                Concrete ML sklearn built-in model or a quantized module.
+                Torus ML sklearn built-in model or a quantized module.
             simulate (bool): whether to run the execution in FHE or in simulated mode.
             n_allowed_runs (int): in case of FHE execution randomness can make the output slightly
                 different this allows to run the evaluation multiple times
@@ -609,7 +609,7 @@ def check_is_good_execution_for_cml_vs_circuit():
 
                 else:
                     raise ValueError(
-                        "numpy_function should be a built-in concrete sklearn model or "
+                        "numpy_function should be a built-in torus sklearn model or "
                         "a QuantizedModule object."
                     )
 

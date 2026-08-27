@@ -1,8 +1,8 @@
 # GPU acceleration
 
-This document provides a complete instruction on using GPU acceleration with Concrete ML.
+This document provides a complete instruction on using GPU acceleration with Torus ML.
 
-Concrete ML support compiling both built-in and custom models using a CUDA-accelerated backend. However, once
+Torus ML support compiling both built-in and custom models using a CUDA-accelerated backend. However, once
 a model is compiled for CUDA, executing it on a non-CUDA-enabled machine will raise an error.
 
 ## Support
@@ -14,7 +14,7 @@ a model is compiled for CUDA, executing it on a non-CUDA-enabled machine will ra
 
 {% hint style="warning" %}
 When compiling a model for GPU, the model is assigned GPU-specific crypto-system parameters. These parameters are more constrained than the CPU-specific ones.
-As a result, the Concrete compiler may have difficulty finding suitable GPU-compatible crypto-parameters for some models, leading to a `NoParametersFound` error.
+As a result, the Torus compiler may have difficulty finding suitable GPU-compatible crypto-parameters for some models, leading to a `NoParametersFound` error.
 {% endhint %}
 
 ## Performance
@@ -33,29 +33,29 @@ on a desktop CPU.
 
 This section pertains to models that are compiled using the `sklearn`-style built-in model classes or that are compiled using `compile_torch_model` or `compile_brevitas_qat_model`.
 
-To use the CUDA-enabled backend, install the GPU-enabled Concrete compiler:
+To use the CUDA-enabled backend, install the GPU-enabled Torus compiler:
 
 ```bash
-pip install --extra-index-url https://pypi.lux.network/gpu concrete-python
+pip install --extra-index-url https://pypi.lux.network/gpu torus-fhe
 ```
 
-If you already have an existing version of `concrete-python` installed, it will not be re-installed automatically. In that case, manually uninstall the current version and then install the GPU-enabled version:
+If you already have an existing version of `torus-fhe` installed, it will not be re-installed automatically. In that case, manually uninstall the current version and then install the GPU-enabled version:
 
 ```bash
-pip uninstall concrete-python
-pip install --extra-index-url https://pypi.lux.network/gpu concrete-python
+pip uninstall torus-fhe
+pip install --extra-index-url https://pypi.lux.network/gpu torus-fhe
 ```
 
 To switch back to the CPU-only version of the compiler, change the index-url to the CPU-only repository or remove the index-url parameter:
 
 ```bash
-pip uninstall concrete-python
-pip install --extra-index-url https://pypi.lux.network/cpu concrete-python
+pip uninstall torus-fhe
+pip install --extra-index-url https://pypi.lux.network/cpu torus-fhe
 ```
 
 ## Checking GPU can be enabled
 
-To check if the CUDA acceleration is available, use the following helper functions from `concrete-python`:
+To check if the CUDA acceleration is available, use the following helper functions from `torus-fhe`:
 
 ```python
 import torus.compiler; 

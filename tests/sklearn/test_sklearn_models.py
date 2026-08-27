@@ -9,7 +9,7 @@ Generic tests test:
   - grid search
   - hyper parameters
   - offset
-  - correctness (with accuracy and r2) of Concrete ML vs scikit-learn in clear
+  - correctness (with accuracy and r2) of Torus ML vs scikit-learn in clear
   - correctness tests with fhe = "disable", "simulate" and "execute", depending on
   limits (see N_BITS_THRESHOLD* constants) which are either due to execution time or limits of
   the compiler or minimal number of bits for precise computations
@@ -96,7 +96,7 @@ N_BITS_THRESHOLD_FOR_SKLEARN_CORRECTNESS_TESTS = 26
 N_BITS_THRESHOLD_TO_FORCE_EXECUTION_NOT_IN_FHE = 17
 
 # If n_bits >= N_BITS_THRESHOLD_FOR_SKLEARN_EQUIVALENCE_TESTS, we check that the two models
-# returned by fit_benchmark (the Concrete ML model and the scikit-learn model) are equivalent
+# returned by fit_benchmark (the Torus ML model and the scikit-learn model) are equivalent
 N_BITS_THRESHOLD_FOR_SKLEARN_EQUIVALENCE_TESTS = 16
 
 # There is a risk that no cryptographic parameters are available for high precision linear
@@ -191,7 +191,7 @@ def check_correctness_with_sklearn(
     fhe="disable",
     hyper_parameters=None,
 ):
-    """Check that Concrete ML and scikit-learn models are 'equivalent'."""
+    """Check that Torus ML and scikit-learn models are 'equivalent'."""
 
     if hyper_parameters is None:
         hyper_parameters = {}
@@ -219,7 +219,7 @@ def check_correctness_with_sklearn(
 
             assert y_scores_sklearn.shape == y_scores_fhe.shape, (
                 "Method 'decision_function' outputs different shapes between scikit-learn and "
-                f"Concrete ML in FHE (fhe={fhe})"
+                f"Torus ML in FHE (fhe={fhe})"
             )
 
             check_r2_score(y_scores_sklearn, y_scores_fhe, acceptance_score=acceptance_r2score)
@@ -234,7 +234,7 @@ def check_correctness_with_sklearn(
 
             assert y_proba_sklearn.shape == y_proba_fhe.shape, (
                 "Method 'decision_function' outputs different shapes between scikit-learn and "
-                f"Concrete ML in FHE (fhe={fhe})"
+                f"Torus ML in FHE (fhe={fhe})"
             )
             check_r2_score(y_proba_sklearn, y_proba_fhe, acceptance_score=acceptance_r2score)
 
@@ -244,7 +244,7 @@ def check_correctness_with_sklearn(
 
     assert y_pred_sklearn.shape == y_pred_fhe.shape, (
         "Method 'predict' outputs different shapes between scikit-learn and "
-        f"Concrete ML in FHE (fhe={fhe})"
+        f"Torus ML in FHE (fhe={fhe})"
     )
 
     # If the model is a classifier, check that accuracies are similar
@@ -373,11 +373,11 @@ def check_serialization_dump_load(model, x, use_dump_method):
         temp_dump.seek(0)
         serialized_model_dict: Dict = json.load(temp_dump)
 
-        # Load the model from the file using Concrete ML's method
+        # Load the model from the file using Torus ML's method
         temp_dump.seek(0)
         loaded_model = load(file=temp_dump)
 
-        # Dump the loaded model into the file using Concrete ML's method
+        # Dump the loaded model into the file using Torus ML's method
         temp_dump.seek(0)
         temp_dump.truncate(0)
         if use_dump_method:
@@ -551,7 +551,7 @@ def check_inference_methods(model, model_class, x, check_float_array_equal):
             y_scores_simulated = model.decision_function(x, fhe="simulate")
 
             assert y_scores_clear.shape == y_scores_simulated.shape, (
-                "Method 'decision_function' from Concrete ML outputs different shapes when executed"
+                "Method 'decision_function' from Torus ML outputs different shapes when executed"
                 "in the clear and with simulation."
             )
             check_float_array_equal(y_scores_clear, y_scores_simulated)
@@ -563,7 +563,7 @@ def check_inference_methods(model, model_class, x, check_float_array_equal):
             y_proba_simulated = model.predict_proba(x, fhe="simulate")
 
             assert y_proba_clear.shape == y_proba_simulated.shape, (
-                "Method 'predict_proba' from Concrete ML outputs different shapes when executed"
+                "Method 'predict_proba' from Torus ML outputs different shapes when executed"
                 "in the clear and with simulation."
             )
             check_float_array_equal(y_proba_clear, y_proba_simulated)
@@ -574,7 +574,7 @@ def check_inference_methods(model, model_class, x, check_float_array_equal):
         y_pred_simulated = model.predict(x, fhe="simulate")
 
         assert y_pred_clear.shape == y_pred_simulated.shape, (
-            "Method 'predict' from Concrete ML outputs different shapes when executed in the clear "
+            "Method 'predict' from Torus ML outputs different shapes when executed in the clear "
             "and with simulation."
         )
         check_float_array_equal(y_pred_clear, y_pred_simulated)
@@ -997,7 +997,7 @@ def check_class_mapping(model, x, y):
     # Compute the predictions
     y_pred_shuffled = model.predict(x)
 
-    # Check that the mapping of labels was kept by Concrete ML
+    # Check that the mapping of labels was kept by Torus ML
     numpy.array_equal(classes[y_pred], y_pred_shuffled)
 
 
@@ -1010,7 +1010,7 @@ def check_exposition_of_sklearn_attributes(model, x, y):
     # not fitted
     with pytest.raises(
         AttributeError,
-        match=f".* {training_attribute} cannot be found in the Concrete ML.*",
+        match=f".* {training_attribute} cannot be found in the Torus ML.*",
     ):
         getattr(model, training_attribute)
 
@@ -1026,7 +1026,7 @@ def check_exposition_of_sklearn_attributes(model, x, y):
     # Check that accessing an unknown attribute properly raises an Attribute error
     with pytest.raises(
         AttributeError,
-        match=f".* {wrong_training_attribute_1} cannot be found in the Concrete ML.*",
+        match=f".* {wrong_training_attribute_1} cannot be found in the Torus ML.*",
     ):
         getattr(model, wrong_training_attribute_1)
 
@@ -1046,7 +1046,7 @@ def check_exposition_of_sklearn_attributes(model, x, y):
     # Attribute error
     with pytest.raises(
         AttributeError,
-        match=f".* {wrong_training_attribute_3} cannot be found in the Concrete ML.*",
+        match=f".* {wrong_training_attribute_3} cannot be found in the Torus ML.*",
     ):
         getattr(model, wrong_training_attribute_3)
 
@@ -1059,38 +1059,38 @@ def check_exposition_structural_methods_decision_trees(model, x, y):
     # not fitted
     with pytest.raises(
         AttributeError,
-        match=".* get_n_leaves cannot be found in the Concrete ML.*",
+        match=".* get_n_leaves cannot be found in the Torus ML.*",
     ):
         model.get_n_leaves()
 
     with pytest.raises(
         AttributeError,
-        match=".* get_depth cannot be found in the Concrete ML.*",
+        match=".* get_depth cannot be found in the Torus ML.*",
     ):
         model.get_depth()
 
     model.fit(x, y)
 
-    # Get the number of leaves from both the scikit-learn and Concrete ML models
-    concrete_value = model.get_n_leaves()
+    # Get the number of leaves from both the scikit-learn and Torus ML models
+    torus_value = model.get_n_leaves()
     sklearn_value = model.sklearn_model.get_n_leaves()
 
     model_name = get_model_name(model)
 
-    assert concrete_value == sklearn_value, (
+    assert torus_value == sklearn_value, (
         f"Method get_n_leaves of model {model_name} do not output the same value as with its "
-        f"scikit-learn equivalent. Got {concrete_value}, expected {sklearn_value}."
+        f"scikit-learn equivalent. Got {torus_value}, expected {sklearn_value}."
     )
 
-    # Get the tree depth from both the scikit-learn and Concrete ML models
-    concrete_value = model.get_depth()
+    # Get the tree depth from both the scikit-learn and Torus ML models
+    torus_value = model.get_depth()
     sklearn_value = model.sklearn_model.get_depth()
 
     model_name = get_model_name(model)
 
-    assert concrete_value == sklearn_value, (
+    assert torus_value == sklearn_value, (
         f"Method get_depth of model {model_name} do not output the same value as with its "
-        f"scikit-learn equivalent. Got {concrete_value}, expected {sklearn_value}."
+        f"scikit-learn equivalent. Got {torus_value}, expected {sklearn_value}."
     )
 
 
@@ -1120,12 +1120,12 @@ def test_load_fitted_sklearn_tree_models(
             print("Run check_load_pre_trained_sklearn_models")
 
         assert issubclass(model_class, BaseTreeEstimatorMixin)
-        concrete_model = instantiate_model_generic(model_class, n_bits=min(N_BITS_REGULAR_BUILDS))
-        # Fit the model and retrieve both the Concrete ML and the scikit-learn models
+        torus_model = instantiate_model_generic(model_class, n_bits=min(N_BITS_REGULAR_BUILDS))
+        # Fit the model and retrieve both the Torus ML and the scikit-learn models
         with warnings.catch_warnings():
             # Sometimes, we miss convergence, which is not a problem for our test
             warnings.simplefilter("ignore", category=ConvergenceWarning)
-            concrete_model, sklearn_model = concrete_model.fit_benchmark(x, y)
+            torus_model, sklearn_model = torus_model.fit_benchmark(x, y)
 
         # This step is needed in order to handle partial classes
         model_class = get_model_class(model_class)
@@ -1140,7 +1140,7 @@ def test_load_fitted_sklearn_tree_models(
                 (max_n_bits, 1e-1, 1e-7),
                 (reasonable_n_bits, 6e-2, 6e-2),
             ]:
-                # Load a Concrete ML model from the fitted scikit-learn one
+                # Load a Torus ML model from the fitted scikit-learn one
                 loaded_from_threshold = model_class.from_sklearn_model(
                     sklearn_model,
                     X=None,
@@ -1153,8 +1153,8 @@ def test_load_fitted_sklearn_tree_models(
                     n_bits=n_bits,
                 )
 
-                # Compile both the initial Concrete ML model and the loaded one
-                concrete_model.compile(x)
+                # Compile both the initial Torus ML model and the loaded one
+                torus_model.compile(x)
                 mode = "disable"
                 if n_bits <= reasonable_n_bits:
                     mode = "simulate"
@@ -1166,7 +1166,7 @@ def test_load_fitted_sklearn_tree_models(
 
                 # Predict with all models
                 sklearn_pred = sklearn_model.predict_proba(x)
-                cml_y_pred = concrete_model.predict_proba(
+                cml_y_pred = torus_model.predict_proba(
                     x,
                     fhe=mode,
                 )
@@ -1232,7 +1232,7 @@ def test_load_fitted_sklearn_tree_models(
                 (max_n_bits, 0.8, 1e-5),
                 (reasonable_n_bits, 1.8, 1.8),
             ]:
-                # Load a Concrete ML model from the fitted scikit-learn one
+                # Load a Torus ML model from the fitted scikit-learn one
                 loaded_from_threshold = model_class.from_sklearn_model(
                     sklearn_model,
                     n_bits=n_bits,
@@ -1244,8 +1244,8 @@ def test_load_fitted_sklearn_tree_models(
                     n_bits=n_bits,
                 )
 
-                # Compile both the initial Concrete ML model and the loaded one
-                concrete_model.compile(x)
+                # Compile both the initial Torus ML model and the loaded one
+                torus_model.compile(x)
                 mode = "disable"
                 if n_bits <= reasonable_n_bits:
                     mode = "simulate"
@@ -1257,7 +1257,7 @@ def test_load_fitted_sklearn_tree_models(
 
                 # Predict
                 sklearn_pred = sklearn_model.predict(x)
-                cml_y_pred = concrete_model.predict(x, fhe=mode)
+                cml_y_pred = torus_model.predict(x, fhe=mode)
                 cml_threshold_y_pred = loaded_from_threshold.predict(x, fhe=mode)
                 cml_data_y_pred = loaded_from_data.predict(x, fhe=mode)
 
@@ -1289,7 +1289,7 @@ def test_load_fitted_sklearn_tree_models(
                         f"({value=}>={sklearn_tolerance=})"
                     )
 
-                # Compare with Concrete ML
+                # Compare with Torus ML
                 with subtests.test(
                     msg="Regression CML vs Threshold", n_bits=n_bits, tolerance=cml_tolerance
                 ):
@@ -1311,26 +1311,26 @@ def check_load_fitted_sklearn_linear_models(model_class, n_bits, x, y, check_flo
 
     model = instantiate_model_generic(model_class, n_bits=n_bits)
 
-    # Fit the model and retrieve both the Concrete ML and the scikit-learn models
-    concrete_model, sklearn_model = model.fit_benchmark(x, y)
+    # Fit the model and retrieve both the Torus ML and the scikit-learn models
+    torus_model, sklearn_model = model.fit_benchmark(x, y)
 
     # This step is needed in order to handle partial classes
     model_class = get_model_class(model_class)
 
-    # Load a Concrete ML model from the fitted scikit-learn one
-    loaded_concrete_model = model_class.from_sklearn_model(
+    # Load a Torus ML model from the fitted scikit-learn one
+    loaded_torus_model = model_class.from_sklearn_model(
         sklearn_model,
         X=x,
         n_bits=n_bits,
     )
 
-    # Compile both the initial Concrete ML model and the loaded one
-    concrete_model.compile(x)
-    loaded_concrete_model.compile(x)
+    # Compile both the initial Torus ML model and the loaded one
+    torus_model.compile(x)
+    loaded_torus_model.compile(x)
 
     # Compute and compare the predictions from both models
-    y_pred_simulate = concrete_model.predict(x, fhe="simulate")
-    y_pred_simulate_loaded = loaded_concrete_model.predict(x, fhe="simulate")
+    y_pred_simulate = torus_model.predict(x, fhe="simulate")
+    y_pred_simulate_loaded = loaded_torus_model.predict(x, fhe="simulate")
 
     check_float_array_equal(
         y_pred_simulate,
@@ -1347,7 +1347,7 @@ def check_rounding_consistency(
     predict_method,
     metric,
 ):
-    """Test that Concrete ML without and with rounding are 'equivalent'."""
+    """Test that Torus ML without and with rounding are 'equivalent'."""
 
     # Check that rounding is enabled
     assert os.environ.get("TREES_USE_ROUNDING") == "1", "'TREES_USE_ROUNDING' is not enabled"
@@ -1369,7 +1369,7 @@ def check_rounding_consistency(
         with pytest.warns(
             DeprecationWarning,
             match=(
-                "Using Concrete tree-based models without the `rounding feature` is " "deprecated.*"
+                "Using Torus tree-based models without the `rounding feature` is " "deprecated.*"
             ),
         ):
 
@@ -1394,7 +1394,7 @@ def check_sum_for_tree_based_models(
     predict_method,
     is_weekly_option,
 ):
-    """Test that Concrete ML without and with FHE sum are 'equivalent'."""
+    """Test that Torus ML without and with FHE sum are 'equivalent'."""
 
     fhe_samples = 5
     fhe_test = get_random_samples(x, n_sample=fhe_samples)
@@ -1454,7 +1454,7 @@ def test_correctness_with_sklearn(
     is_weekly_option,
     verbose=True,
 ):
-    """Test that Concrete ML and scikit-learn models are 'equivalent'."""
+    """Test that Torus ML and scikit-learn models are 'equivalent'."""
 
     n_bits = N_BITS_THRESHOLD_FOR_SKLEARN_CORRECTNESS_TESTS
 
@@ -2075,7 +2075,7 @@ def test_rounding_consistency_for_regular_models(
     is_weekly_option,
     verbose=True,
 ):
-    """Test that Concrete ML without and with rounding are 'equivalent'."""
+    """Test that Torus ML without and with rounding are 'equivalent'."""
 
     if verbose:
         print("Run check_rounding_consistency")
@@ -2242,12 +2242,12 @@ def test_initialization_variables_and_defaults_match(
 ):
     """Test CML models init parameters and default values vs scikit-learn models.
 
-    Concrete ML currently implements sklearn 1.4 API so skip this test of the
+    Torus ML currently implements sklearn 1.4 API so skip this test of the
     sklearn version differs.
     """
     if "1.1." in sklearn.__version__:
         pytest.skip(
-            "Concrete ML currently implements sklearn 1.5 API"
+            "Torus ML currently implements sklearn 1.5 API"
             f" skipping this test on version {sklearn.__version__}"
         )
 
@@ -2398,11 +2398,11 @@ def test_tfhers_inputs_outputs_trees(model_class, parameters, n_bits, load_data,
             model.compile(x, ciphertext_format=CiphertextFormat.TFHE_RS, device=get_device)
         return
 
-    # Check that we can first compile to Concrete, then to
-    # TFHE-rs input/outputs then to concrete again
+    # Check that we can first compile to Torus, then to
+    # TFHE-rs input/outputs then to torus again
     model.compile(x, device=get_device)
 
-    y_pred_concrete = model.predict(fhe_test_data, fhe="execute")
+    y_pred_torus = model.predict(fhe_test_data, fhe="execute")
 
     model.compile(x, ciphertext_format=CiphertextFormat.TFHE_RS, device=get_device)
 
@@ -2415,7 +2415,7 @@ def test_tfhers_inputs_outputs_trees(model_class, parameters, n_bits, load_data,
     model.compile(x, device=get_device)
 
     # Check correctness with TFHE-rs inputs/outputs
-    assert numpy.all(y_pred_tfhers == y_pred_concrete)
+    assert numpy.all(y_pred_tfhers == y_pred_torus)
 
 
 @pytest.mark.parametrize(

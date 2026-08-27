@@ -11,7 +11,7 @@ In general, quantization can be carried out in two different ways:
 
 For FHE-friendly neural networks, QAT is the best method to achieve optimal accuracy under [FHE constraints](../getting-started/README.md#current-limitations). This technique reduces weights and activations to very low bit-widths (for example, 2-3 bits). When combined with pruning, QAT helps keep low accumulator bit-widths.
 
-Concrete ML uses the third-party library [Brevitas](https://github.com/Xilinx/brevitas) to perform QAT for PyTorch neural networks, but options exist for other frameworks such as Keras/Tensorflow. Concrete ML provides several [demos and tutorials](../tutorials/showcase.md) that use Brevitas , including the [CIFAR classification tutorial](../../use_case_examples/cifar/cifar_brevitas_finetuning/CifarQuantizationAwareTraining.ipynb). For a more formal description of the usage of Brevitas to build FHE-compatible neural networks, please see the [Brevitas usage reference](../explanations/inner-workings/external_libraries.md#brevitas).
+Torus ML uses the third-party library [Brevitas](https://github.com/Xilinx/brevitas) to perform QAT for PyTorch neural networks, but options exist for other frameworks such as Keras/Tensorflow. Torus ML provides several [demos and tutorials](../tutorials/showcase.md) that use Brevitas , including the [CIFAR classification tutorial](../../use_case_examples/cifar/cifar_brevitas_finetuning/CifarQuantizationAwareTraining.ipynb). For a more formal description of the usage of Brevitas to build FHE-compatible neural networks, please see the [Brevitas usage reference](../explanations/inner-workings/external_libraries.md#brevitas).
 
 {% hint style="info" %}
 For a formal explanation of the mechanisms that enable FHE-compatible neural networks, please see the the following paper.
@@ -63,12 +63,12 @@ The network was trained using different numbers of neurons in the hidden layers,
 This shows that the fp32 accuracy and accumulator size increases with the number of hidden neurons, while the 3-bits accuracy remains low regardless of the number of neurons. Although all configurations tested were FHE-compatible (accumulator \< 16 bits), it is often preferable to have a lower accumulator size to speed up inference time.
 
 {% hint style="info" %}
-Accumulator size is determined by [Concrete](https://docs.lux.network/concrete) as the maximum bit-width encountered anywhere in the encrypted circuit.
+Accumulator size is determined by [Torus](https://docs.lux.network/torus) as the maximum bit-width encountered anywhere in the encrypted circuit.
 {% endhint %}
 
 ## Quantization Aware Training (QAT)
 
-Using [QAT](../explanations/quantization.md) with [Brevitas](https://github.com/Xilinx/brevitas) is the best way to guarantee a good accuracy for Concrete ML compatible neural networks.
+Using [QAT](../explanations/quantization.md) with [Brevitas](https://github.com/Xilinx/brevitas) is the best way to guarantee a good accuracy for Torus ML compatible neural networks.
 
 Brevitas provides quantized versions of almost all PyTorch layers. For example, `Linear` layer becomes `QuantLinear`, and `ReLU` layer becomes `QuantReLU`. Brevitas also offers additional quantization parameters, such as:
 
@@ -77,9 +77,9 @@ Brevitas provides quantized versions of almost all PyTorch layers. For example, 
 - `weight_bit_width`: precision quantization bits for weights
 - `weight_quant`: quantization protocol for the weights
 
-To use FHE, the network must be quantized from end to end. With the Brevitas `QuantIdentity` layer, you can quantize the input by placing it at the network's entry point. Moreover, you can combine PyTorch and Brevitas layers, as long as a `QuantIdentity` layer follows the PyTorch layer. The following table lists the replacements needed to convert a PyTorch neural network for Concrete ML compatibility.
+To use FHE, the network must be quantized from end to end. With the Brevitas `QuantIdentity` layer, you can quantize the input by placing it at the network's entry point. Moreover, you can combine PyTorch and Brevitas layers, as long as a `QuantIdentity` layer follows the PyTorch layer. The following table lists the replacements needed to convert a PyTorch neural network for Torus ML compatibility.
 
-| PyTorch fp32 layer   | Concrete ML model with PyTorch/Brevitas               |
+| PyTorch fp32 layer   | Torus ML model with PyTorch/Brevitas               |
 | -------------------- | ----------------------------------------------------- |
 | `torch.nn.Linear`    | `brevitas.quant.QuantLinear`                          |
 | `torch.nn.Conv2d`    | `brevitas.quant.Conv2d`                               |
@@ -96,7 +96,7 @@ Some PyTorch operators (from the PyTorch functional API), require a `brevitas.qu
 | `torch.flatten`                              |
 
 {% hint style="info" %}
-The QAT import tool in Concrete ML is a work in progress. While it has been tested with some networks built with Brevitas, it is possible to use other tools to obtain QAT networks.
+The QAT import tool in Torus ML is a work in progress. While it has been tested with some networks built with Brevitas, it is possible to use other tools to obtain QAT networks.
 {% endhint %}
 
 With Brevitas, the network above becomes:
@@ -155,7 +155,7 @@ Training this network with pruning (see [below](#pruning-using-torch)) using 30 
 | Non-zero neurons              | 30    |
 | ----------------------------- | ----- |
 | 3-bit accuracy brevitas       | 95.4% |
-| 3-bit accuracy in Concrete ML | 95.4% |
+| 3-bit accuracy in Torus ML | 95.4% |
 | Accumulator size              | 7     |
 
 {% hint style="info" %}
@@ -168,11 +168,11 @@ QAT is somewhat slower than normal training. QAT introduces quantization during 
 
 ### Pruning using Torch
 
-Considering that FHE only works with limited integer precision, there is a risk of overflowing in the accumulator, which will make Concrete ML raise an error.
+Considering that FHE only works with limited integer precision, there is a risk of overflowing in the accumulator, which will make Torus ML raise an error.
 
 To understand how to overcome this limitation, consider a scenario where 2 bits are used for weights and layer inputs/outputs. The `Linear` layer computes a dot product between weights and inputs $$y = \sum_i w_i x_i$$. With 2 bits, no overflow can occur during the computation of the `Linear` layer as long the number of neurons does not exceed 14, as in the sum of 14 products of 2-bits numbers does not exceed 7 bits.
 
-By default, Concrete ML uses symmetric quantization for model weights, with values in the interval $$\left[-2^{n_{bits}-1}, 2^{n_{bits}-1}-1\right]$$. For example, for $$n_{bits}=2$$ the possible values are $$[-2, -1, 0, 1]$$; for $$n_{bits}=3$$, the values can be $$[-4,-3,-2,-1,0,1,2,3]$$.
+By default, Torus ML uses symmetric quantization for model weights, with values in the interval $$\left[-2^{n_{bits}-1}, 2^{n_{bits}-1}-1\right]$$. For example, for $$n_{bits}=2$$ the possible values are $$[-2, -1, 0, 1]$$; for $$n_{bits}=3$$, the values can be $$[-4,-3,-2,-1,0,1,2,3]$$.
 
 In a typical setting, the weights will not all have the maximum or minimum values (such as $$-2^{n_{bits}-1}$$). Weights typically have a normal distribution around 0, which is one of the motivating factors for their symmetric quantization. A symmetric distribution and many zero-valued weights are desirable because opposite sign weights can cancel each other out and zero weights do not increase the accumulator size.
 

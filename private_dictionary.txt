@@ -55,7 +55,7 @@ cli
 clientspecs
 codeblocks
 concat
-concreteestimators
+torusestimators
 config
 configs
 conv
@@ -384,4 +384,4 @@ xgboost
 xilinx
 yaml
 yurchak
-zama
+lux

@@ -1,12 +1,12 @@
 # Production Deployment
 
-This document explains the deployment workflow and the model serving pattern for deploying Fully Homomorphic Encryption machine learning models in a client/server setting using Concrete ML.
+This document explains the deployment workflow and the model serving pattern for deploying Fully Homomorphic Encryption machine learning models in a client/server setting using Torus ML.
 
 ## Deployment
 
 The steps to prepare a model for encrypted inference in a client/server setting is illustrated as follows:
 
-![](../figures/concretemlgraph1.jpg)
+![](../figures/torusmlgraph1.jpg)
 
 ### Model training and compilation
 
@@ -104,7 +104,7 @@ These objects are serialized into bytes to streamline the data transfer between 
 
 #### Ciphertext formats and keys
 
-Two types of ciphertext formats are [available in Concrete ML](../getting-started/concepts.md#ciphertext-formats) and both are available for deployment. To use the _TFHE-rs radix_ format, pass the `ciphertext_format` option to the compilation call as follows:
+Two types of ciphertext formats are [available in Torus ML](../getting-started/concepts.md#ciphertext-formats) and both are available for deployment. To use the _TFHE-rs radix_ format, pass the `ciphertext_format` option to the compilation call as follows:
 
 <!--pytest-codeblocks:cont-->
 
@@ -143,7 +143,7 @@ In the example above, a second evaluation key is obtained in the `tfhers_evaluat
 
 The client-side deployment of a secured inference machine learning model is illustrated as follows:
 
-![](../figures/concretemlgraph3.jpg)
+![](../figures/torusmlgraph3.jpg)
 
 The workflow contains the following steps:
 
@@ -156,9 +156,9 @@ The workflow contains the following steps:
 1. **Data decryption**: The client decrypts it using its private key.
 1. **Post-processing**: The client performs any necessary post-processing of the decrypted result as specified in `serialized_processing.json` (part of `client.zip`).
 
-The server-side implementation of a Concrete ML model is illustrated as follows:
+The server-side implementation of a Torus ML model is illustrated as follows:
 
-![](../figures/concretemlgraph2.jpg)
+![](../figures/torusmlgraph2.jpg)
 
 The workflow contains the following steps:
 

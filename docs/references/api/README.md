@@ -4,64 +4,64 @@
 
 ## Modules
 
-- [`torus.ml.common`](./torus.ml.common.md#module-concretemlcommon): Module for shared data structures and code.
-- [`torus.ml.common.check_inputs`](./torus.ml.common.check_inputs.md#module-concretemlcommoncheck_inputs): Check and conversion tools.
-- [`torus.ml.common.debugging`](./torus.ml.common.debugging.md#module-concretemlcommondebugging): Module for debugging.
-- [`torus.ml.common.debugging.custom_assert`](./torus.ml.common.debugging.custom_assert.md#module-concretemlcommondebuggingcustom_assert): Provide some variants of assert.
-- [`torus.ml.common.serialization`](./torus.ml.common.serialization.md#module-concretemlcommonserialization): Serialization module.
-- [`torus.ml.common.serialization.decoder`](./torus.ml.common.serialization.decoder.md#module-concretemlcommonserializationdecoder): Custom decoder for serialization.
-- [`torus.ml.common.serialization.dumpers`](./torus.ml.common.serialization.dumpers.md#module-concretemlcommonserializationdumpers): Dump functions for serialization.
-- [`torus.ml.common.serialization.encoder`](./torus.ml.common.serialization.encoder.md#module-concretemlcommonserializationencoder): Custom encoder for serialization.
-- [`torus.ml.common.serialization.loaders`](./torus.ml.common.serialization.loaders.md#module-concretemlcommonserializationloaders): Load functions for serialization.
-- [`torus.ml.common.utils`](./torus.ml.common.utils.md#module-concretemlcommonutils): Utils that can be re-used by other pieces of code in the module.
-- [`torus.ml.deployment`](./torus.ml.deployment.md#module-concretemldeployment): Module for deployment of the FHE model.
-- [`torus.ml.deployment.fhe_client_server`](./torus.ml.deployment.fhe_client_server.md#module-concretemldeploymentfhe_client_server): APIs for FHE deployment.
-- [`torus.ml.onnx`](./torus.ml.onnx.md#module-concretemlonnx): ONNX module.
-- [`torus.ml.onnx.convert`](./torus.ml.onnx.convert.md#module-concretemlonnxconvert): ONNX conversion related code.
-- [`torus.ml.onnx.onnx_impl_utils`](./torus.ml.onnx.onnx_impl_utils.md#module-concretemlonnxonnx_impl_utils): Utility functions for onnx operator implementations.
-- [`torus.ml.onnx.onnx_model_manipulations`](./torus.ml.onnx.onnx_model_manipulations.md#module-concretemlonnxonnx_model_manipulations): Some code to manipulate models.
-- [`torus.ml.onnx.onnx_utils`](./torus.ml.onnx.onnx_utils.md#module-concretemlonnxonnx_utils): Utils to interpret an ONNX model with numpy.
-- [`torus.ml.onnx.ops_impl`](./torus.ml.onnx.ops_impl.md#module-concretemlonnxops_impl): ONNX ops implementation in Python + NumPy.
-- [`torus.ml.pandas`](./torus.ml.pandas.md#module-concretemlpandas): Public API for encrypted data-frames.
-- [`torus.ml.pandas.client_engine`](./torus.ml.pandas.client_engine.md#module-concretemlpandasclient_engine): Define the framework used for managing keys (encrypt, decrypt) for encrypted data-frames.
-- [`torus.ml.pandas.dataframe`](./torus.ml.pandas.dataframe.md#module-concretemlpandasdataframe): Define the encrypted data-frame framework.
-- [`torus.ml.pytest`](./torus.ml.pytest.md#module-concretemlpytest): Module which is used to contain common functions for pytest.
-- [`torus.ml.pytest.torch_models`](./torus.ml.pytest.torch_models.md#module-concretemlpytesttorch_models): Torch modules for our pytests.
-- [`torus.ml.pytest.utils`](./torus.ml.pytest.utils.md#module-concretemlpytestutils): Common functions or lists for test files, which can't be put in fixtures.
-- [`torus.ml.quantization`](./torus.ml.quantization.md#module-concretemlquantization): Modules for quantization.
-- [`torus.ml.quantization.base_quantized_op`](./torus.ml.quantization.base_quantized_op.md#module-concretemlquantizationbase_quantized_op): Base Quantized Op class that implements quantization for a float numpy op.
-- [`torus.ml.quantization.linear_op_glwe_backend`](./torus.ml.quantization.linear_op_glwe_backend.md#module-concretemlquantizationlinear_op_glwe_backend): GLWE backend for some supported layers.
-- [`torus.ml.quantization.post_training`](./torus.ml.quantization.post_training.md#module-concretemlquantizationpost_training): Post Training Quantization methods.
-- [`torus.ml.quantization.quantized_module`](./torus.ml.quantization.quantized_module.md#module-concretemlquantizationquantized_module): QuantizedModule API.
-- [`torus.ml.quantization.quantized_module_passes`](./torus.ml.quantization.quantized_module_passes.md#module-concretemlquantizationquantized_module_passes): Optimization passes for QuantizedModules.
-- [`torus.ml.quantization.quantized_ops`](./torus.ml.quantization.quantized_ops.md#module-concretemlquantizationquantized_ops): Quantized versions of the ONNX operators for post training quantization.
-- [`torus.ml.quantization.quantizers`](./torus.ml.quantization.quantizers.md#module-concretemlquantizationquantizers): Quantization utilities for a numpy array/tensor.
-- [`torus.ml.search_parameters`](./torus.ml.search_parameters.md#module-concretemlsearch_parameters): Modules for `p_error` search.
-- [`torus.ml.search_parameters.p_error_search`](./torus.ml.search_parameters.p_error_search.md#module-concretemlsearch_parametersp_error_search): p_error binary search for classification and regression tasks.
-- [`torus.ml.sklearn`](./torus.ml.sklearn.md#module-concretemlsklearn): Import sklearn models.
-- [`torus.ml.sklearn.base`](./torus.ml.sklearn.base.md#module-concretemlsklearnbase): Base classes for all estimators.
-- [`torus.ml.sklearn.glm`](./torus.ml.sklearn.glm.md#module-concretemlsklearnglm): Implement sklearn's Generalized Linear Models (GLM).
-- [`torus.ml.sklearn.linear_model`](./torus.ml.sklearn.linear_model.md#module-concretemlsklearnlinear_model): Implement sklearn linear model.
-- [`torus.ml.sklearn.neighbors`](./torus.ml.sklearn.neighbors.md#module-concretemlsklearnneighbors): Implement sklearn neighbors model.
-- [`torus.ml.sklearn.qnn`](./torus.ml.sklearn.qnn.md#module-concretemlsklearnqnn): Scikit-learn interface for fully-connected quantized neural networks.
-- [`torus.ml.sklearn.qnn_module`](./torus.ml.sklearn.qnn_module.md#module-concretemlsklearnqnn_module): Sparse Quantized Neural Network torch module.
-- [`torus.ml.sklearn.rf`](./torus.ml.sklearn.rf.md#module-concretemlsklearnrf): Implement RandomForest models.
-- [`torus.ml.sklearn.svm`](./torus.ml.sklearn.svm.md#module-concretemlsklearnsvm): Implement Support Vector Machine.
-- [`torus.ml.sklearn.tree`](./torus.ml.sklearn.tree.md#module-concretemlsklearntree): Implement DecisionTree models.
-- [`torus.ml.sklearn.tree_to_numpy`](./torus.ml.sklearn.tree_to_numpy.md#module-concretemlsklearntree_to_numpy): Implements the conversion of a tree model to a numpy function.
-- [`torus.ml.sklearn.xgb`](./torus.ml.sklearn.xgb.md#module-concretemlsklearnxgb): Implements XGBoost models.
-- [`torus.ml.torch`](./torus.ml.torch.md#module-concretemltorch): Modules for torch to numpy conversion.
-- [`torus.ml.torch.compile`](./torus.ml.torch.compile.md#module-concretemltorchcompile): torch compilation function.
-- [`torus.ml.torch.hybrid_backprop_linear`](./torus.ml.torch.hybrid_backprop_linear.md#module-concretemltorchhybrid_backprop_linear): Linear layer implementations for backprop FHE-compatible models.
-- [`torus.ml.torch.hybrid_model`](./torus.ml.torch.hybrid_model.md#module-concretemltorchhybrid_model): Implement the conversion of a torch model to a hybrid fhe/torch inference.
-- [`torus.ml.torch.lora`](./torus.ml.torch.lora.md#module-concretemltorchlora): This module contains classes for LoRA (Low-Rank Adaptation) FHE training and custom layers.
-- [`torus.ml.torch.numpy_module`](./torus.ml.torch.numpy_module.md#module-concretemltorchnumpy_module): A torch to numpy module.
-- [`torus.ml.version`](./torus.ml.version.md#module-concretemlversion): File to manage the version of the package.
+- [`torus.ml.common`](./torus.ml.common.md#module-torusmlcommon): Module for shared data structures and code.
+- [`torus.ml.common.check_inputs`](./torus.ml.common.check_inputs.md#module-torusmlcommoncheck_inputs): Check and conversion tools.
+- [`torus.ml.common.debugging`](./torus.ml.common.debugging.md#module-torusmlcommondebugging): Module for debugging.
+- [`torus.ml.common.debugging.custom_assert`](./torus.ml.common.debugging.custom_assert.md#module-torusmlcommondebuggingcustom_assert): Provide some variants of assert.
+- [`torus.ml.common.serialization`](./torus.ml.common.serialization.md#module-torusmlcommonserialization): Serialization module.
+- [`torus.ml.common.serialization.decoder`](./torus.ml.common.serialization.decoder.md#module-torusmlcommonserializationdecoder): Custom decoder for serialization.
+- [`torus.ml.common.serialization.dumpers`](./torus.ml.common.serialization.dumpers.md#module-torusmlcommonserializationdumpers): Dump functions for serialization.
+- [`torus.ml.common.serialization.encoder`](./torus.ml.common.serialization.encoder.md#module-torusmlcommonserializationencoder): Custom encoder for serialization.
+- [`torus.ml.common.serialization.loaders`](./torus.ml.common.serialization.loaders.md#module-torusmlcommonserializationloaders): Load functions for serialization.
+- [`torus.ml.common.utils`](./torus.ml.common.utils.md#module-torusmlcommonutils): Utils that can be re-used by other pieces of code in the module.
+- [`torus.ml.deployment`](./torus.ml.deployment.md#module-torusmldeployment): Module for deployment of the FHE model.
+- [`torus.ml.deployment.fhe_client_server`](./torus.ml.deployment.fhe_client_server.md#module-torusmldeploymentfhe_client_server): APIs for FHE deployment.
+- [`torus.ml.onnx`](./torus.ml.onnx.md#module-torusmlonnx): ONNX module.
+- [`torus.ml.onnx.convert`](./torus.ml.onnx.convert.md#module-torusmlonnxconvert): ONNX conversion related code.
+- [`torus.ml.onnx.onnx_impl_utils`](./torus.ml.onnx.onnx_impl_utils.md#module-torusmlonnxonnx_impl_utils): Utility functions for onnx operator implementations.
+- [`torus.ml.onnx.onnx_model_manipulations`](./torus.ml.onnx.onnx_model_manipulations.md#module-torusmlonnxonnx_model_manipulations): Some code to manipulate models.
+- [`torus.ml.onnx.onnx_utils`](./torus.ml.onnx.onnx_utils.md#module-torusmlonnxonnx_utils): Utils to interpret an ONNX model with numpy.
+- [`torus.ml.onnx.ops_impl`](./torus.ml.onnx.ops_impl.md#module-torusmlonnxops_impl): ONNX ops implementation in Python + NumPy.
+- [`torus.ml.pandas`](./torus.ml.pandas.md#module-torusmlpandas): Public API for encrypted data-frames.
+- [`torus.ml.pandas.client_engine`](./torus.ml.pandas.client_engine.md#module-torusmlpandasclient_engine): Define the framework used for managing keys (encrypt, decrypt) for encrypted data-frames.
+- [`torus.ml.pandas.dataframe`](./torus.ml.pandas.dataframe.md#module-torusmlpandasdataframe): Define the encrypted data-frame framework.
+- [`torus.ml.pytest`](./torus.ml.pytest.md#module-torusmlpytest): Module which is used to contain common functions for pytest.
+- [`torus.ml.pytest.torch_models`](./torus.ml.pytest.torch_models.md#module-torusmlpytesttorch_models): Torch modules for our pytests.
+- [`torus.ml.pytest.utils`](./torus.ml.pytest.utils.md#module-torusmlpytestutils): Common functions or lists for test files, which can't be put in fixtures.
+- [`torus.ml.quantization`](./torus.ml.quantization.md#module-torusmlquantization): Modules for quantization.
+- [`torus.ml.quantization.base_quantized_op`](./torus.ml.quantization.base_quantized_op.md#module-torusmlquantizationbase_quantized_op): Base Quantized Op class that implements quantization for a float numpy op.
+- [`torus.ml.quantization.linear_op_glwe_backend`](./torus.ml.quantization.linear_op_glwe_backend.md#module-torusmlquantizationlinear_op_glwe_backend): GLWE backend for some supported layers.
+- [`torus.ml.quantization.post_training`](./torus.ml.quantization.post_training.md#module-torusmlquantizationpost_training): Post Training Quantization methods.
+- [`torus.ml.quantization.quantized_module`](./torus.ml.quantization.quantized_module.md#module-torusmlquantizationquantized_module): QuantizedModule API.
+- [`torus.ml.quantization.quantized_module_passes`](./torus.ml.quantization.quantized_module_passes.md#module-torusmlquantizationquantized_module_passes): Optimization passes for QuantizedModules.
+- [`torus.ml.quantization.quantized_ops`](./torus.ml.quantization.quantized_ops.md#module-torusmlquantizationquantized_ops): Quantized versions of the ONNX operators for post training quantization.
+- [`torus.ml.quantization.quantizers`](./torus.ml.quantization.quantizers.md#module-torusmlquantizationquantizers): Quantization utilities for a numpy array/tensor.
+- [`torus.ml.search_parameters`](./torus.ml.search_parameters.md#module-torusmlsearch_parameters): Modules for `p_error` search.
+- [`torus.ml.search_parameters.p_error_search`](./torus.ml.search_parameters.p_error_search.md#module-torusmlsearch_parametersp_error_search): p_error binary search for classification and regression tasks.
+- [`torus.ml.sklearn`](./torus.ml.sklearn.md#module-torusmlsklearn): Import sklearn models.
+- [`torus.ml.sklearn.base`](./torus.ml.sklearn.base.md#module-torusmlsklearnbase): Base classes for all estimators.
+- [`torus.ml.sklearn.glm`](./torus.ml.sklearn.glm.md#module-torusmlsklearnglm): Implement sklearn's Generalized Linear Models (GLM).
+- [`torus.ml.sklearn.linear_model`](./torus.ml.sklearn.linear_model.md#module-torusmlsklearnlinear_model): Implement sklearn linear model.
+- [`torus.ml.sklearn.neighbors`](./torus.ml.sklearn.neighbors.md#module-torusmlsklearnneighbors): Implement sklearn neighbors model.
+- [`torus.ml.sklearn.qnn`](./torus.ml.sklearn.qnn.md#module-torusmlsklearnqnn): Scikit-learn interface for fully-connected quantized neural networks.
+- [`torus.ml.sklearn.qnn_module`](./torus.ml.sklearn.qnn_module.md#module-torusmlsklearnqnn_module): Sparse Quantized Neural Network torch module.
+- [`torus.ml.sklearn.rf`](./torus.ml.sklearn.rf.md#module-torusmlsklearnrf): Implement RandomForest models.
+- [`torus.ml.sklearn.svm`](./torus.ml.sklearn.svm.md#module-torusmlsklearnsvm): Implement Support Vector Machine.
+- [`torus.ml.sklearn.tree`](./torus.ml.sklearn.tree.md#module-torusmlsklearntree): Implement DecisionTree models.
+- [`torus.ml.sklearn.tree_to_numpy`](./torus.ml.sklearn.tree_to_numpy.md#module-torusmlsklearntree_to_numpy): Implements the conversion of a tree model to a numpy function.
+- [`torus.ml.sklearn.xgb`](./torus.ml.sklearn.xgb.md#module-torusmlsklearnxgb): Implements XGBoost models.
+- [`torus.ml.torch`](./torus.ml.torch.md#module-torusmltorch): Modules for torch to numpy conversion.
+- [`torus.ml.torch.compile`](./torus.ml.torch.compile.md#module-torusmltorchcompile): torch compilation function.
+- [`torus.ml.torch.hybrid_backprop_linear`](./torus.ml.torch.hybrid_backprop_linear.md#module-torusmltorchhybrid_backprop_linear): Linear layer implementations for backprop FHE-compatible models.
+- [`torus.ml.torch.hybrid_model`](./torus.ml.torch.hybrid_model.md#module-torusmltorchhybrid_model): Implement the conversion of a torch model to a hybrid fhe/torch inference.
+- [`torus.ml.torch.lora`](./torus.ml.torch.lora.md#module-torusmltorchlora): This module contains classes for LoRA (Low-Rank Adaptation) FHE training and custom layers.
+- [`torus.ml.torch.numpy_module`](./torus.ml.torch.numpy_module.md#module-torusmltorchnumpy_module): A torch to numpy module.
+- [`torus.ml.version`](./torus.ml.version.md#module-torusmlversion): File to manage the version of the package.
 
 ## Classes
 
-- [`decoder.ConcreteDecoder`](./torus.ml.common.serialization.decoder.md#class-concretedecoder): Custom json decoder to handle non-native types found in serialized Concrete ML objects.
-- [`encoder.ConcreteEncoder`](./torus.ml.common.serialization.encoder.md#class-concreteencoder): Custom json encoder to handle non-native types found in serialized Concrete ML objects.
+- [`decoder.TorusDecoder`](./torus.ml.common.serialization.decoder.md#class-torusdecoder): Custom json decoder to handle non-native types found in serialized Torus ML objects.
+- [`encoder.TorusEncoder`](./torus.ml.common.serialization.encoder.md#class-torusencoder): Custom json encoder to handle non-native types found in serialized Torus ML objects.
 - [`utils.CiphertextFormat`](./torus.ml.common.utils.md#class-ciphertextformat): Type of ciphertext used as input/output for a model.
 - [`utils.FheMode`](./torus.ml.common.utils.md#class-fhemode): Enum representing the execution mode.
 - [`utils.HybridFHEMode`](./torus.ml.common.utils.md#class-hybridfhemode): Simple enum for different modes of execution of HybridModel.
@@ -125,7 +125,7 @@
 - [`base_quantized_op.QuantizedOpUnivariateOfEncrypted`](./torus.ml.quantization.base_quantized_op.md#class-quantizedopunivariateofencrypted): An univariate operator of an encrypted value.
 - [`linear_op_glwe_backend.GLWELinearLayerExecutor`](./torus.ml.quantization.linear_op_glwe_backend.md#class-glwelinearlayerexecutor): GLWE execution helper for pure linear layers.
 - [`post_training.CalibrationMode`](./torus.ml.quantization.post_training.md#class-calibrationmode): Simple enum for different modes of execution of HybridModel.
-- [`post_training.ONNXConverter`](./torus.ml.quantization.post_training.md#class-onnxconverter): Base ONNX to Concrete ML computation graph conversion class.
+- [`post_training.ONNXConverter`](./torus.ml.quantization.post_training.md#class-onnxconverter): Base ONNX to Torus ML computation graph conversion class.
 - [`post_training.PostTrainingAffineQuantization`](./torus.ml.quantization.post_training.md#class-posttrainingaffinequantization): Post-training Affine Quantization.
 - [`post_training.PostTrainingQATImporter`](./torus.ml.quantization.post_training.md#class-posttrainingqatimporter): Converter of Quantization Aware Training networks.
 - [`quantized_module.QuantizedModule`](./torus.ml.quantization.quantized_module.md#class-quantizedmodule): Inference for a quantized model.
@@ -195,8 +195,8 @@
 - [`quantizers.UniformQuantizationParameters`](./torus.ml.quantization.quantizers.md#class-uniformquantizationparameters): Quantization parameters for uniform quantization.
 - [`quantizers.UniformQuantizer`](./torus.ml.quantization.quantizers.md#class-uniformquantizer): Uniform quantizer.
 - [`p_error_search.BinarySearch`](./torus.ml.search_parameters.p_error_search.md#class-binarysearch): Class for `p_error` hyper-parameter search for classification and regression tasks.
-- [`base.BaseClassifier`](./torus.ml.sklearn.base.md#class-baseclassifier): Base class for linear and tree-based classifiers in Concrete ML.
-- [`base.BaseEstimator`](./torus.ml.sklearn.base.md#class-baseestimator): Base class for all estimators in Concrete ML.
+- [`base.BaseClassifier`](./torus.ml.sklearn.base.md#class-baseclassifier): Base class for linear and tree-based classifiers in Torus ML.
+- [`base.BaseEstimator`](./torus.ml.sklearn.base.md#class-baseestimator): Base class for all estimators in Torus ML.
 - [`base.BaseTreeClassifierMixin`](./torus.ml.sklearn.base.md#class-basetreeclassifiermixin): Mixin class for tree-based classifiers.
 - [`base.BaseTreeEstimatorMixin`](./torus.ml.sklearn.base.md#class-basetreeestimatormixin): Mixin class for tree-based estimators.
 - [`base.BaseTreeRegressorMixin`](./torus.ml.sklearn.base.md#class-basetreeregressormixin): Mixin class for tree-based regressors.
@@ -251,11 +251,11 @@
 - [`custom_assert.assert_not_reached`](./torus.ml.common.debugging.custom_assert.md#function-assert_not_reached): Provide a custom assert to check that a piece of code is never reached.
 - [`custom_assert.assert_true`](./torus.ml.common.debugging.custom_assert.md#function-assert_true): Provide a custom assert to check that the condition is True.
 - [`decoder.object_hook`](./torus.ml.common.serialization.decoder.md#function-object_hook): Define a custom object hook that enables loading any supported serialized values.
-- [`dumpers.dump`](./torus.ml.common.serialization.dumpers.md#function-dump): Dump any Concrete ML object in a file.
+- [`dumpers.dump`](./torus.ml.common.serialization.dumpers.md#function-dump): Dump any Torus ML object in a file.
 - [`dumpers.dumps`](./torus.ml.common.serialization.dumpers.md#function-dumps): Dump any object as a string.
 - [`encoder.dump_name_and_value`](./torus.ml.common.serialization.encoder.md#function-dump_name_and_value): Dump the value into a custom dict format.
-- [`loaders.load`](./torus.ml.common.serialization.loaders.md#function-load): Load any Concrete ML object that provide a `load_dict` method.
-- [`loaders.loads`](./torus.ml.common.serialization.loaders.md#function-loads): Load any Concrete ML object that provide a `dump_dict` method.
+- [`loaders.load`](./torus.ml.common.serialization.loaders.md#function-load): Load any Torus ML object that provide a `load_dict` method.
+- [`loaders.loads`](./torus.ml.common.serialization.loaders.md#function-loads): Load any Torus ML object that provide a `dump_dict` method.
 - [`utils.all_values_are_floats`](./torus.ml.common.utils.md#function-all_values_are_floats): Indicate if all unpacked values are of a supported float dtype.
 - [`utils.all_values_are_integers`](./torus.ml.common.utils.md#function-all_values_are_integers): Indicate if all unpacked values are of a supported integer dtype.
 - [`utils.all_values_are_of_dtype`](./torus.ml.common.utils.md#function-all_values_are_of_dtype): Indicate if all unpacked values are of the specified dtype(s).
@@ -277,11 +277,11 @@
 - [`utils.is_pandas_series`](./torus.ml.common.utils.md#function-is_pandas_series): Indicate if the input container is a Pandas Series.
 - [`utils.is_pandas_type`](./torus.ml.common.utils.md#function-is_pandas_type): Indicate if the input container is a Pandas DataFrame or Series.
 - [`utils.is_regressor_or_partial_regressor`](./torus.ml.common.utils.md#function-is_regressor_or_partial_regressor): Indicate if the model class represents a regressor.
-- [`utils.manage_parameters_for_pbs_errors`](./torus.ml.common.utils.md#function-manage_parameters_for_pbs_errors): Return (p_error, global_p_error) that we want to give to Concrete.
+- [`utils.manage_parameters_for_pbs_errors`](./torus.ml.common.utils.md#function-manage_parameters_for_pbs_errors): Return (p_error, global_p_error) that we want to give to Torus.
 - [`utils.process_rounding_threshold_bits`](./torus.ml.common.utils.md#function-process_rounding_threshold_bits): Check and process the rounding_threshold_bits parameter.
 - [`utils.replace_invalid_arg_name_chars`](./torus.ml.common.utils.md#function-replace_invalid_arg_name_chars): Sanitize arg_name, replacing invalid chars by \_.
 - [`utils.to_tuple`](./torus.ml.common.utils.md#function-to_tuple): Make the input a tuple if it is not already the case.
-- [`fhe_client_server.check_concrete_versions`](./torus.ml.deployment.fhe_client_server.md#function-check_concrete_versions): Check that current versions match the ones used in development.
+- [`fhe_client_server.check_torus_versions`](./torus.ml.deployment.fhe_client_server.md#function-check_torus_versions): Check that current versions match the ones used in development.
 - [`convert.fuse_matmul_bias_to_gemm`](./torus.ml.onnx.convert.md#function-fuse_matmul_bias_to_gemm): Fuse sequence of matmul -> add into a gemm node.
 - [`convert.get_equivalent_numpy_forward_from_onnx`](./torus.ml.onnx.convert.md#function-get_equivalent_numpy_forward_from_onnx): Get the numpy equivalent forward of the provided ONNX model.
 - [`convert.get_equivalent_numpy_forward_from_onnx_tree`](./torus.ml.onnx.convert.md#function-get_equivalent_numpy_forward_from_onnx_tree): Get the numpy equivalent forward of the provided ONNX model for tree-based models only.
@@ -383,12 +383,12 @@
 - [`utils.check_serialization`](./torus.ml.pytest.utils.md#function-check_serialization): Check that the given object can properly be serialized.
 - [`utils.data_calibration_processing`](./torus.ml.pytest.utils.md#function-data_calibration_processing): Reduce size of the given data-set.
 - [`utils.get_random_samples`](./torus.ml.pytest.utils.md#function-get_random_samples): Select `n_sample` random elements from a 2D NumPy array.
-- [`utils.get_sklearn_all_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_all_models_and_datasets): Get the pytest parameters to use for testing all models available in Concrete ML.
+- [`utils.get_sklearn_all_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_all_models_and_datasets): Get the pytest parameters to use for testing all models available in Torus ML.
 - [`utils.get_sklearn_linear_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_linear_models_and_datasets): Get the pytest parameters to use for testing linear models.
 - [`utils.get_sklearn_neighbors_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_neighbors_models_and_datasets): Get the pytest parameters to use for testing neighbor models.
 - [`utils.get_sklearn_neural_net_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_neural_net_models_and_datasets): Get the pytest parameters to use for testing neural network models.
 - [`utils.get_sklearn_tree_models_and_datasets`](./torus.ml.pytest.utils.md#function-get_sklearn_tree_models_and_datasets): Get the pytest parameters to use for testing tree-based models.
-- [`utils.instantiate_model_generic`](./torus.ml.pytest.utils.md#function-instantiate_model_generic): Instantiate any Concrete ML model type.
+- [`utils.instantiate_model_generic`](./torus.ml.pytest.utils.md#function-instantiate_model_generic): Instantiate any Torus ML model type.
 - [`utils.load_torch_model`](./torus.ml.pytest.utils.md#function-load_torch_model): Load an object saved with torch.save() from a file or dict.
 - [`utils.pandas_dataframe_are_equal`](./torus.ml.pytest.utils.md#function-pandas_dataframe_are_equal): Determine if both data-frames are identical.
 - [`utils.values_are_equal`](./torus.ml.pytest.utils.md#function-values_are_equal): Indicate if two values are equal.

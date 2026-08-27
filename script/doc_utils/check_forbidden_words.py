@@ -66,11 +66,11 @@ def process_file(file_str: str, do_open_problematic_files=False):
     #           word is ignored
     forbidden_word_list: List[Tuple[str, List, List[str]]]
     forbidden_word_list = [
-        ("Concrete-ml", [], []),  # use `Concrete ML`
-        ("Concrete-Ml", [], []),  # use `Concrete ML`
-        ("Concrete-ML", [], []),  # use `Concrete ML`
-        ("concrete ml", [], []),  # use `Concrete ML`
-        ("torus-ml", [], []),  # use `Concrete ML`
+        ("Torus-ml", [], []),  # use `Torus ML`
+        ("Torus-Ml", [], []),  # use `Torus ML`
+        ("Torus-ML", [], []),  # use `Torus ML`
+        ("torus ml", [], []),  # use `Torus ML`
+        ("torus-ml", [], []),  # use `Torus ML`
         ("pytorch", [], []),  # use `PyTorch`
         ("Pytorch", [], []),  # use `PyTorch`
         ("pytorch", [], []),  # use `PyTorch`
@@ -116,14 +116,14 @@ def process_file(file_str: str, do_open_problematic_files=False):
             ["import brevitas", "from brevitas", "bit accuracy brevitas"],
             [".py"],
         ),  # use Brevitas
-        ("concrete-numpy", [], []),  # use Concrete
-        ("concrete-Numpy", [], []),  # use Concrete
-        ("Concrete-numpy", [], []),  # use Concrete
-        ("Concrete-Numpy", [], []),  # use Concrete
-        ("concrete numpy", [], []),  # use Concrete
-        ("concrete Numpy", [], []),  # use Concrete
-        ("Concrete numpy", [], []),  # use Concrete
-        ("Concrete Numpy", [], []),  # use Concrete
+        ("torus-numpy", [], []),  # use Torus
+        ("torus-Numpy", [], []),  # use Torus
+        ("Torus-numpy", [], []),  # use Torus
+        ("Torus-Numpy", [], []),  # use Torus
+        ("torus numpy", [], []),  # use Torus
+        ("torus Numpy", [], []),  # use Torus
+        ("Torus numpy", [], []),  # use Torus
+        ("Torus Numpy", [], []),  # use Torus
         ("cnp", [], []),  # use fhe (or cp, worst case)
         ("tool-kit", [], []),  # use toolkit
         ("tool-kits", [], []),  # use toolkits
@@ -181,9 +181,9 @@ def process_file(file_str: str, do_open_problematic_files=False):
         ("th", [], []),  # use the
         ("appropriat", [], []),  # use appropriate
         ("constrains", [], []),  # use constraints
-        ("CML", [], []),  # use Concrete ML
-        ("CN", ["CNN"], []),  # use Concrete Python
-        ("CP", [], []),  # use Concrete Python
+        ("CML", [], []),  # use Torus ML
+        ("CN", ["CNN"], []),  # use Torus FHE
+        ("CP", [], []),  # use Torus FHE
         ("ie", [], []),  # use i.e.,
         ("ie,", [], []),  # use i.e.,
         ("ie.,", [], []),  # use i.e.,

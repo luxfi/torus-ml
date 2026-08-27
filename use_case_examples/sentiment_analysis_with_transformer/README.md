@@ -2,7 +2,7 @@
 
 ## Running the application on your machine
 
-Please see the [hugging face space](https://huggingface.co/spaces/zama-fhe/encrypted_sentiment_analysis) that runs the application along with [the code](https://huggingface.co/spaces/zama-fhe/encrypted_sentiment_analysis/tree/main) if you want to run this locally on your machine or deploy this following a client/server framework.
+Please see the [hugging face space](https://huggingface.co/spaces/lux-fhe/encrypted_sentiment_analysis) that runs the application along with [the code](https://huggingface.co/spaces/lux-fhe/encrypted_sentiment_analysis/tree/main) if you want to run this locally on your machine or deploy this following a client/server framework.
 
 ## Installation
 

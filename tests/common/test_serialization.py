@@ -110,27 +110,27 @@ def test_serialize_random_state(random_state, random_state_type):
 
 
 @pytest.mark.parametrize(
-    "concrete_model_class",
+    "torus_model_class",
     _get_sklearn_linear_models() + _get_sklearn_tree_models(),
 )
-def test_serialize_sklearn_model(concrete_model_class, load_data):
+def test_serialize_sklearn_model(torus_model_class, load_data):
     """Test serialization of sklearn_model objects."""
 
     # Skip test for regressors that use internal scikit-learn loss classes
     problematic_models = {"TweedieRegressor", "GammaRegressor", "PoissonRegressor"}
-    if concrete_model_class.__name__ in problematic_models and "1.1." in sklearn.__version__:
+    if torus_model_class.__name__ in problematic_models and "1.1." in sklearn.__version__:
         pytest.skip(
-            f"Skipping {concrete_model_class.__name__} due to internal scikit-learn "
+            f"Skipping {torus_model_class.__name__} due to internal scikit-learn "
             "class serialization issues"
         )
 
     # Create the data
-    x, y = load_data(concrete_model_class)
+    x, y = load_data(torus_model_class)
 
-    # Instantiate and fit a Concrete model to recover its underlying Scikit Learn model
-    concrete_model = concrete_model_class()
+    # Instantiate and fit a Torus model to recover its underlying Scikit Learn model
+    torus_model = torus_model_class()
 
-    _, sklearn_model = concrete_model.fit_benchmark(x, y)
+    _, sklearn_model = torus_model.fit_benchmark(x, y)
 
     # Both JSON string are not compared as scikit-learn models are serialized using Skops or pickle,
     # which does not make string comparison possible
@@ -299,11 +299,11 @@ def test_serialize_valid_split(cross_validation_split, stratified, random_state)
             "Object of type Tensor is not JSON serializable",
         ),
         # Serializing a Circuit object is currently not supported
-        # FIXME: https://github.com/luxfi/concrete-numpy-internal/issues/1841
+        # FIXME: https://github.com/luxfi/torus-numpy-internal/issues/1841
         pytest.param(
             get_a_fhe_circuit(),
             NotImplementedError,
-            "Concrete Circuit object serialization is not implemented.",
+            "Torus Circuit object serialization is not implemented.",
         ),
     ],
 )
@@ -346,7 +346,7 @@ def test_error_raises_loads(unsupported_object, expected_error, expected_message
 def test_torch_activations():
     """Test supported and unsupported torch activation list."""
 
-    # Torch activation list defined in Concrete ML
+    # Torch activation list defined in Torus ML
     all_torch_activations_cml = [
         activation.__name__
         for activation in SUPPORTED_TORCH_ACTIVATIONS + UNSUPPORTED_TORCH_ACTIVATIONS
@@ -361,6 +361,6 @@ def test_torch_activations():
 
     assert sorted(all_torch_activations_cml) == sorted(all_torch_activations_torch), (
         "Difference found between activations imported from Torch and the ones considered in "
-        "Concrete ML: "
+        "Torus ML: "
         f"{list(set(all_torch_activations_cml).symmetric_difference(all_torch_activations_torch))}"
     )
