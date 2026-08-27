@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Fix OMP issues for macOS Intel, https://github.com/zama-ai/concrete-ml-internal/issues/3951
+# Fix OMP issues for macOS Intel, https://github.com/lux-ai/torus-ml-internal/issues/3951
 # This should be avoided for macOS with arm64 architecture
 
 set -e
@@ -32,9 +32,9 @@ then
 
         for X in $LIST_OF_OMP_DYLIBS
         do
-            if [[ "$X" != *"concrete"* ]]; then
+            if [[ "$X" != *"torus"* ]]; then
                 echo "rm \"\${WHICH_VENV}\"/lib/\"\${WHICH_PYTHON}\"/$X"
-                echo "ln -s \"\${WHICH_VENV}\"/lib/\"\${WHICH_PYTHON}\"/site-packages/concrete/.dylibs/libomp.dylib \"\${WHICH_VENV}\"/lib/\"\${WHICH_PYTHON}\"/$X"
+                echo "ln -s \"\${WHICH_VENV}\"/lib/\"\${WHICH_PYTHON}\"/site-packages/torus/.dylibs/libomp.dylib \"\${WHICH_VENV}\"/lib/\"\${WHICH_PYTHON}\"/$X"
             fi
         done
 
@@ -46,33 +46,33 @@ then
     then
         # Same fix for all python versions
         rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
-        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
+        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
         rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libomp.dylib
-        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libomp.dylib
+        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libomp.dylib
         rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
-        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
+        ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
     else
         # The error is specific to python version
         if [ "$PYTHON_VERSION" == "3.8" ] || [ "$PYTHON_VERSION" == "3.9" ]
         then
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/.dylibs/libiomp5.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/.dylibs/libiomp5.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/.dylibs/libiomp5.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
         elif [ "$PYTHON_VERSION" == "3.10" ]
         then
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/xgboost/.dylibs/libomp.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/torch/lib/libiomp5.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/sklearn/.dylibs/libomp.dylib
             rm "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/functorch/.dylibs/libiomp5.dylib
-            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/concrete/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/functorch/.dylibs/libiomp5.dylib
+            ln -s "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/site-packages/torus/.dylibs/libomp.dylib "${WHICH_VENV}"/lib/"${WHICH_PYTHON}"/./site-packages/functorch/.dylibs/libiomp5.dylib
         else
             echo "Please have a look to libraries libiomp5.dylib related to torch and then"
             echo "apply appropriate fix"

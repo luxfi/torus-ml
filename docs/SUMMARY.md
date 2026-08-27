@@ -4,7 +4,7 @@
 
 ## Get Started
 
-- [What is Concrete ML?](getting-started/README.md)
+- [What is Torus ML?](getting-started/README.md)
 - [Installation](getting-started/pip_installing.md)
 - [Key concepts](getting-started/concepts.md)
 - [Inference in the cloud](getting-started/cloud.md)

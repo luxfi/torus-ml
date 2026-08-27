@@ -174,7 +174,7 @@ jobs:
       # Pull necessary LFS files (and thus avoid downloading files stored for benchmarks, use cases, ...)
       - name: Pull LFS files
         run: |
-          git lfs pull --include "tests/data/**, src/concrete/ml/pandas/_client_server_files/**" --exclude  ""
+          git lfs pull --include "tests/data/**, src/torus/ml/pandas/_client_server_files/**" --exclude  ""
 
       - name: Set up Python ${{ inputs.python_version }}
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -241,7 +241,7 @@ jobs:
       # (src, codeblocks, ...) when some changes are detected in them. For example, if some
       # dependencies were changed, 'tests', 'determinism', 'codeblocks' and 'determinism' acronyms
       # will be affected. We use the license MD5 file for that because it is built on the
-      # poetry.lock as well as the Concrete Python version, which can be installed manually in the
+      # poetry.lock as well as the Torus FHE version, which can be installed manually in the
       # makefile.
       # For codeblocks, 'make pytest_codeblocks' runs the `make_utils/pytest_codeblocks.sh` script,
       # which executes a find and grep command to find them. In the following section, we manually
@@ -262,12 +262,12 @@ jobs:
           files_yaml: |
             src:
               - src/**
-              - '!src/concrete/ml/version.py'
+              - '!src/torus/ml/version.py'
             tests:
               - 'tests/**/test_*.py'
             tests_utils:
               - tests/data/**
-              - src/concrete/ml/pytest/**
+              - src/torus/ml/pytest/**
             determinism:
               - tests/seeding/test_seeding.py
             docs:
@@ -549,7 +549,7 @@ jobs:
 
       # Run Pytest on all of our tests (except flaky ones) using PyPI's local wheel in the weekly
       # or during the release process
-      - name: PyTest (no flaky) with PyPI local wheel of Concrete ML (weekly, release)
+      - name: PyTest (no flaky) with PyPI local wheel of Torus ML (weekly, release)
         if: |
           (fromJSON(env.IS_WEEKLY) || fromJSON(env.IS_RELEASE))
           && steps.conformance.outcome == 'success'
@@ -557,7 +557,7 @@ jobs:
         run: |
           make pytest_pypi_wheel_cml_no_flaky
 
-      # Run Pytest on all of our tests (except flaky ones) using Concrete ML's latest version
+      # Run Pytest on all of our tests (except flaky ones) using Torus ML's latest version
       # available on PyPI after publishing a release
       - name: PyTest (no flaky) with PyPI (published release)
         if: |
@@ -614,7 +614,7 @@ jobs:
           make pytest_codeblocks
 
       # Run Pytest on all codeblocks on a weekly basis or while releasing
-      - name: PyTest CodeBlocks with PyPI local wheel of Concrete ML (weekly, release)
+      - name: PyTest CodeBlocks with PyPI local wheel of Torus ML (weekly, release)
         if: |
           (fromJSON(env.IS_WEEKLY) || fromJSON(env.IS_RELEASE))
           && steps.conformance.outcome == 'success'
@@ -622,7 +622,7 @@ jobs:
         run: |
           make pytest_codeblocks_pypi_wheel_cml
 
-      # Run Pytest on all codeblocks using Concrete ML's latest version available on PyPI after
+      # Run Pytest on all codeblocks using Torus ML's latest version available on PyPI after
       # publishing a release
       - name: PyTest CodeBlocks with PyPI (published release)
         if: |

@@ -1,12 +1,12 @@
 # Linear models
 
-This page explains Concrete ML linear models for both classification and regression. These models are based on [scikit-learn](https://scikit-learn.org/stable/) linear models.
+This page explains Torus ML linear models for both classification and regression. These models are based on [scikit-learn](https://scikit-learn.org/stable/) linear models.
 
 ## Supported models for encrypted inference
 
 The following models are supported for training on clear data and predicting on encrypted data. Their API is similar to the one of [scikit-learn](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model). These models are also compatible with some of scikit-learn's main workflows, such as `Pipeline()` and `GridSearch()`.
 
-|                                             Concrete ML                                              |                                                                         scikit-learn                                                                         |
+|                                             Torus ML                                              |                                                                         scikit-learn                                                                         |
 | :--------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |   [LinearRegression](../references/api/torus.ml.sklearn.linear_model.md#class-linearregression)   |    [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression)    |
 | [LogisticRegression](../references/api/torus.ml.sklearn.linear_model.md#class-logisticregression) | [LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression) |
@@ -28,7 +28,7 @@ In addition to predicting on encrypted data, the following models  support train
 
 ## Ciphertext format compatibility
 
-These models only support _Concrete_ ciphertexts. See [the ciphertexts format](../getting-started/concepts.md#ciphertext-formats) documentation for more details.
+These models only support _Torus_ ciphertexts. See [the ciphertexts format](../getting-started/concepts.md#ciphertext-formats) documentation for more details.
 
 ## Quantization parameters
 
@@ -46,7 +46,7 @@ For a more detailed comparison of the impact of such pre-processing,  please ref
 
 ## Pre-trained models
 
-You can convert an already trained scikit-learn linear model to a Concrete ML one by using the [`from_sklearn_model`](../references/api/torus.ml.sklearn.base.md#classmethod-from_sklearn_model) method. See [the following example](linear.md#loading-a-pre-trained-model).
+You can convert an already trained scikit-learn linear model to a Torus ML one by using the [`from_sklearn_model`](../references/api/torus.ml.sklearn.base.md#classmethod-from_sklearn_model) method. See [the following example](linear.md#loading-a-pre-trained-model).
 
 ## Example
 
@@ -100,13 +100,13 @@ print(
 
 The figure below compares the decision boundary of the FHE classifier and a scikit-learn model executed in clear. You can find the complete code in the [LogisticRegression notebook](../tutorials/ml_examples.md).
 
-The overall accuracy scores are identical (93%) between the scikit-learn model (executed in the clear) and the Concrete ML one (executed in FHE). In fact, quantization has little impact on the decision boundaries, as linear models can use large precision numbers when quantizing inputs and weights in Concrete ML. Additionally, as the linear models do not use [Programmable Boostrapping](../getting-started/concepts.md#cryptography-concepts), the FHE computations are always exact, irrespective of the [PBS error tolerance setting](../explanations/advanced_features.md#approximate-computations). This ensures that the FHE predictions are always identical to the quantized clear ones.
+The overall accuracy scores are identical (93%) between the scikit-learn model (executed in the clear) and the Torus ML one (executed in FHE). In fact, quantization has little impact on the decision boundaries, as linear models can use large precision numbers when quantizing inputs and weights in Torus ML. Additionally, as the linear models do not use [Programmable Boostrapping](../getting-started/concepts.md#cryptography-concepts), the FHE computations are always exact, irrespective of the [PBS error tolerance setting](../explanations/advanced_features.md#approximate-computations). This ensures that the FHE predictions are always identical to the quantized clear ones.
 
 ![Sklearn model decision boundaries](../figures/logistic_regression_clear.png) ![FHE model decision boundaries](../figures/logistic_regression_fhe.png)
 
 ## Loading a pre-trained model
 
-An alternative to the example above is to train a scikit-learn model in a separate step and then to convert it to Concrete ML.
+An alternative to the example above is to train a scikit-learn model in a separate step and then to convert it to Torus ML.
 
 ```
 from sklearn.linear_model import LogisticRegression as SKlearnLogisticRegression

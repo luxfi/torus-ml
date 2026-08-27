@@ -1,5 +1,5 @@
 # Image filtering using FHE
 
-We have created a [Hugging Face space](https://huggingface.co/spaces/zama-fhe/encrypted_image_filtering) to apply filters over images homomorphically using the developer-friendly tools in [Concrete](https://github.com/luxfi/concrete) and [Concrete ML](https://github.com/luxfi/torus-ml). This means the data is encrypted both in transit and during processing.
+We have created a [Hugging Face space](https://huggingface.co/spaces/lux-fhe/encrypted_image_filtering) to apply filters over images homomorphically using the developer-friendly tools in [Torus](https://github.com/luxfi/torus) and [Torus ML](https://github.com/luxfi/torus-ml). This means the data is encrypted both in transit and during processing.
 
-A [tutorial](https://www.lux.network/post/encrypted-image-filtering-using-homomorphic-encryption) has also been published alongside. It describes the few steps needed for replicating such a demo and be able to experiment with new customizable filters. All development files are available [here](https://huggingface.co/spaces/zama-fhe/encrypted_image_filtering/tree/main).
+A [tutorial](https://www.lux.network/post/encrypted-image-filtering-using-homomorphic-encryption) has also been published alongside. It describes the few steps needed for replicating such a demo and be able to experiment with new customizable filters. All development files are available [here](https://huggingface.co/spaces/lux-fhe/encrypted_image_filtering/tree/main).

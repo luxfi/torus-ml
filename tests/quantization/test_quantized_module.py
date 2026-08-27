@@ -188,7 +188,7 @@ def test_intermediary_values(n_bits, model_class, input_shape, activation_functi
     # Execute the forward pass in the clear
     _, debug_values = quantized_model.forward(numpy_input, debug=True, fhe="disable")
 
-    # Count the number of Gemm/Conv layers in the Concrete ML debug values
+    # Count the number of Gemm/Conv layers in the Torus ML debug values
     num_gemm_conv = 0
     for layer_name in debug_values:
         if "Gemm" not in layer_name and "Conv" not in layer_name:
@@ -203,7 +203,7 @@ def test_intermediary_values(n_bits, model_class, input_shape, activation_functi
             continue
         num_torch_gemm_conv += 1
 
-    # Make sure we have debug output for all conv/gemm layers in Concrete ML
+    # Make sure we have debug output for all conv/gemm layers in Torus ML
     assert num_gemm_conv == num_torch_gemm_conv
 
 
@@ -399,7 +399,7 @@ def test_inputs_encryption_status(model_class, input_shape, default_configuratio
             inputs_encryption_status=("random",),
         )
 
-    # Additional argument (error from Concrete Python)
+    # Additional argument (error from Torus FHE)
     with pytest.raises(ValueError, match="Too many arguments in '.*', expected 1 arguments."):
         compile_torch_model(
             torch_fc_model,

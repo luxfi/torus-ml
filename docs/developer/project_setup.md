@@ -1,6 +1,6 @@
 # Set up the project
 
-Concrete ML is a `Python` library, so `Python` should be installed to develop Concrete ML. `v3.8` and `v3.9` are the only supported versions. Concrete ML also uses `Poetry` and `Make`.
+Torus ML is a `Python` library, so `Python` should be installed to develop Torus ML. `v3.8` and `v3.9` are the only supported versions. Torus ML also uses `Poetry` and `Make`.
 
 First of all, you need to `git clone` the project:
 
@@ -88,7 +88,7 @@ In the following sections, be sure to use the proper `make` tool for your system
 
 ### Cloning the repository
 
-To get the source code of Concrete ML, clone the code repository using the link for your favorite communication protocol (ssh or https).
+To get the source code of Torus ML, clone the code repository using the link for your favorite communication protocol (ssh or https).
 
 ## Setting up environment on your host OS
 

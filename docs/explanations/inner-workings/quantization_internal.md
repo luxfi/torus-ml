@@ -2,7 +2,7 @@
 
 ## Quantizing data
 
-Concrete ML has support for quantized ML models and also provides quantization tools for Quantization Aware Training and Post-Training Quantization. The core of this functionality is the conversion of floating point values to integers and back. This is done using `QuantizedArray` in `torus.ml.quantization`.
+Torus ML has support for quantized ML models and also provides quantization tools for Quantization Aware Training and Post-Training Quantization. The core of this functionality is the conversion of floating point values to integers and back. This is done using `QuantizedArray` in `torus.ml.quantization`.
 
 The [`QuantizedArray`](../../references/api/torus.ml.quantization.quantizers.md#class-quantizedarray) class takes several arguments that determine how float values are quantized:
 
@@ -78,7 +78,7 @@ QuantizedArray(
 
 Machine learning models are implemented with a diverse set of operations, such as convolution, linear transformations, activation functions, and element-wise operations. When working with quantized values, these operations cannot be carried out in an equivalent way to floating point values. With quantization, it is necessary to re-scale the input and output values of each operation to fit in the quantization domain.
 
-In Concrete ML, the quantized equivalent of a scikit-learn model or a PyTorch `nn.Module` is the `QuantizedModule`. Note that only inference is implemented in the `QuantizedModule`, and it is built through a conversion of the inference function of the corresponding scikit-learn or PyTorch module.
+In Torus ML, the quantized equivalent of a scikit-learn model or a PyTorch `nn.Module` is the `QuantizedModule`. Note that only inference is implemented in the `QuantizedModule`, and it is built through a conversion of the inference function of the corresponding scikit-learn or PyTorch module.
 
 Built-in neural networks expose the `quantized_module` member, while a `QuantizedModule` is also the result of the compilation of custom models through `compile_torch_model` and `compile_brevitas_qat_model`.
 
@@ -92,7 +92,7 @@ Calibration is the process of determining the typical distributions of values en
 To perform calibration, an interpreter goes through the ONNX graph in [topological order](https://en.wikipedia.org/wiki/Topological_sorting) and stores the intermediate results as it goes. The statistics of these values determine quantization parameters.
 {% endhint %}
 
-That `QuantizedModule` generates the Concrete function that is compiled to FHE. The compilation will succeed if the intermediate values conform to the 16-bits precision limit of the Concrete stack. See [the compilation section](../compilation.md) for details.
+That `QuantizedModule` generates the Torus function that is compiled to FHE. The compilation will succeed if the intermediate values conform to the 16-bits precision limit of the Torus stack. See [the compilation section](../compilation.md) for details.
 
 ## Resources
 

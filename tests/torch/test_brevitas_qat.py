@@ -186,8 +186,8 @@ def test_brevitas_tinymnist_cnn(
         True, qat_bits, signed, narrow, False
     )
 
-    def test_with_concrete(quantized_module, test_loader, use_fhe_simulation):
-        """Test a neural network that is quantized and compiled with Concrete ML."""
+    def test_with_torus(quantized_module, test_loader, use_fhe_simulation):
+        """Test a neural network that is quantized and compiled with Torus ML."""
 
         all_targets = numpy.zeros((len(test_loader)), dtype=numpy.int64)
 
@@ -225,7 +225,7 @@ def test_brevitas_tinymnist_cnn(
         configuration=default_configuration,
     )
 
-    fhe_s_correct = test_with_concrete(
+    fhe_s_correct = test_with_torus(
         q_module_simulated,
         test_dataloader,
         use_fhe_simulation=True,
@@ -244,7 +244,7 @@ def test_brevitas_tinymnist_cnn(
 
 
 # Note that this test is currently disabled until the pytorch dtype issue is found
-# and all mismatches between Concrete ML and Brevitas are fixed
+# and all mismatches between Torus ML and Brevitas are fixed
 # FIXME: https://github.com/luxfi/torus-ml-internal/issues/2373
 @pytest.mark.parametrize(
     "n_layers",
@@ -341,14 +341,14 @@ def test_brevitas_intermediary_values(
         "verbose": 0,
     }
 
-    concrete_model = model_class(**params)
+    torus_model = model_class(**params)
 
     # Compute mean/stdev on training set and normalize both train and test sets with them
     normalizer = StandardScaler()
     x_train = normalizer.fit_transform(x_train)
     x_test = normalizer.transform(x_test)
 
-    concrete_model.fit(x_train, y_train)
+    torus_model.fit(x_train, y_train)
 
     # Wrap the original torch module with a debug module that captures intermediary values
     class DebugQNNModel(SparseQuantNeuralNetwork):
@@ -381,20 +381,20 @@ def test_brevitas_intermediary_values(
         if "module__" in param
     }
 
-    # Concrete ML and Concrete Python use float64, so we need to force pytorch to use the same, as
+    # Torus ML and Torus FHE use float64, so we need to force pytorch to use the same, as
     # it defaults to float32. Note that this change is global and may interfere with
     # threading or multiprocessing. Thus this test can not be launched in parallel with others.
     torch.set_default_dtype(torch.float64)
 
     # Wrap the original model, and copy its weights
     dbg_model = DebugQNNModel(**params_module, input_dim=input_dim, n_outputs=n_outputs)
-    dbg_model.load_state_dict(concrete_model.base_module.state_dict())
+    dbg_model.load_state_dict(torus_model.base_module.state_dict())
 
     # Execute on the test set and capture debug values
     dbg_model(torch.tensor(x_test.astype(numpy.float64)))
 
-    # Execute the Concrete ML model on the test set and capture debug values
-    _, cml_debug_values = concrete_model.quantized_module_.forward(
+    # Execute the Torus ML model on the test set and capture debug values
+    _, cml_debug_values = torus_model.quantized_module_.forward(
         x_test, debug=True, fhe="disable"
     )
 
@@ -424,7 +424,7 @@ def test_brevitas_intermediary_values(
 
     # pylint: disable-next=consider-using-enumerate
     for idx in range(len(cml_intermediary_values)):
-        # Check if any activations are different between Brevitas and Concrete ML
+        # Check if any activations are different between Brevitas and Torus ML
         diff_inp = numpy.abs(cml_intermediary_values[idx] - dbg_model.intermediary_values[idx])
         error = ""
         if numpy.any(diff_inp) > 0:
@@ -432,8 +432,8 @@ def test_brevitas_intermediary_values(
             indices = numpy.nonzero(diff_inp)
             error = (
                 f"Mismatched values in layer {idx} at input indices: {numpy.transpose(indices)}\n"
-                f"Concrete ML Inputs were: {cml_input_values[idx][indices]} \n"
-                f"Concrete ML quantized to {cml_intermediary_values[idx][indices]}\n"
+                f"Torus ML Inputs were: {cml_input_values[idx][indices]} \n"
+                f"Torus ML quantized to {cml_intermediary_values[idx][indices]}\n"
                 f"Brevitas inputs were {dbg_model.intermediary_inp_values_float[idx][indices]}\n"
                 f"Brevitas quantized to {dbg_model.intermediary_values[idx][indices]}\n "
                 f"Quant params were {str(cml_quantizers[idx].__dict__)}\n "
@@ -442,7 +442,7 @@ def test_brevitas_intermediary_values(
         # Assert if there were any mismatches
         assert numpy.all(diff_inp == 0), error
 
-        # Check if any weights are different between Brevitas and Concrete ML
+        # Check if any weights are different between Brevitas and Torus ML
         diff_weights = numpy.abs(cml_quant_weights[idx] - dbg_model.quant_weights[idx])
         weights_ok = True
 
@@ -459,8 +459,8 @@ def test_brevitas_intermediary_values(
 
             error = (
                 f"Mismatched weights in layer {idx} at input indices: {numpy.transpose(indices)}\n"
-                f"Concrete ML raw weights were: {cml_raw_weights[idx][indices]} \n"
-                f"Concrete ML quantized to {cml_quant_weights[idx][indices]}\n"
+                f"Torus ML raw weights were: {cml_raw_weights[idx][indices]} \n"
+                f"Torus ML quantized to {cml_quant_weights[idx][indices]}\n"
                 f"Brevitas weights were {dbg_model.raw_weights[idx][indices]}\n"
                 f"Brevitas quantized to {dbg_model.quant_weights[idx][indices]}\n "
             )
@@ -473,8 +473,8 @@ def test_brevitas_intermediary_values(
 def test_brevitas_constant_folding(default_configuration):
     """Test that a network that does not quantize its inputs raises the right exception.
 
-    The network tested is not a valid QAT network for Concrete ML as it does not
-    quantize its inputs. However, in previous versions of Concrete ML a bug
+    The network tested is not a valid QAT network for Torus ML as it does not
+    quantize its inputs. However, in previous versions of Torus ML a bug
     in constant folding prevented the correct error being raised.
     """
 
@@ -513,7 +513,7 @@ def test_brevitas_power_of_two(
     """Test a custom QAT network that uses power-of-two scaling.
 
     Test whether a network using power-of-two scaling quantization is imported
-    correctly and roundPBS is used. Test that the Concrete ML does not override
+    correctly and roundPBS is used. Test that the Torus ML does not override
     the user's round PBS configuration.
     """
 

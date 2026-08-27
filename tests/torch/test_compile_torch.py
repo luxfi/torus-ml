@@ -394,7 +394,7 @@ def accuracy_test_rounding(
             result = module.dequantize_output(q_result)
             results[key].append(result)
 
-    # Check modules predictions FHE simulation vs Concrete ML.
+    # Check modules predictions FHE simulation vs Torus ML.
     for key, module in compiled_modules.items():
 
         # low bit-width rounding is not behaving as expected with new simulation
@@ -698,7 +698,7 @@ def test_compile_brevitas_qat(
     )
 
 
-# Update this test to align with Concrete's simulation fix.
+# Update this test to align with Torus's simulation fix.
 # FIXME: https://github.com/luxfi/torus-ml-internal/issues/4578
 @pytest.mark.xfail
 @pytest.mark.parametrize(
@@ -1099,7 +1099,7 @@ def test_torch_padding(default_configuration, check_circuit_has_no_tlu):
     cml_output = quant_model.forward(test_input, fhe="disable")
 
     # We only care about checking that zeros added with padding are in the same positions
-    # between the torch output and the Concrete ML output
+    # between the torch output and the Torus ML output
     torch_output = torch_output > 0
     cml_output = cml_output > 0
 

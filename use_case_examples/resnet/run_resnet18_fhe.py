@@ -298,7 +298,7 @@ def main():
     args = parser.parse_args()
 
     if args.use_gpu and not torus.compiler.check_gpu_available():
-        print("Follow the GPU setup guide to install the GPU-enabled Concrete ML compiler.")
+        print("Follow the GPU setup guide to install the GPU-enabled Torus ML compiler.")
         print("GPU Enabled:", torus.compiler.check_gpu_enabled())
         print("GPU Available:", torus.compiler.check_gpu_available())
 
