@@ -1,21 +1,21 @@
 # Nearest neighbors
 
-This document introduces the nearest neighbors non-parametric classification models that Concrete ML provides with a scikit-learn interface through the `KNeighborsClassifier` class.
+This document introduces the nearest neighbors non-parametric classification models that Torus ML provides with a scikit-learn interface through the `KNeighborsClassifier` class.
 
-|                                              Concrete ML                                              | scikit-learn                                                                                                          |
+|                                              Torus ML                                              | scikit-learn                                                                                                          |
 | :---------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------- |
 | [KNeighborsClassifier](../references/api/torus.ml.sklearn.neighbors.md#class-kneighborsclassifier) | [KNeighborsClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) |
 
 ## Ciphertext format compatibility
 
-These models only support _Concrete_ ciphertexts. See [the ciphertexts format](../getting-started/concepts.md#ciphertext-formats) documentation for more details.
+These models only support _Torus_ ciphertexts. See [the ciphertexts format](../getting-started/concepts.md#ciphertext-formats) documentation for more details.
 
 ## Example
 
 ```python
 from torus.ml.sklearn import KNeighborsClassifier
 
-concrete_classifier = KNeighborsClassifier(n_bits=2, n_neighbors=3)
+torus_classifier = KNeighborsClassifier(n_bits=2, n_neighbors=3)
 ```
 
 ## Quantization parameters

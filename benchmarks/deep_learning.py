@@ -459,8 +459,8 @@ def report_compiler_feedback(fhe_circuit: Circuit):
         )
 
 
-def concrete_inference(quantized_module: QuantizedModule, x: np.ndarray, in_fhe: bool):
-    """Execute the model's inference using Concrete ML (quantized clear or FHE).
+def torus_inference(quantized_module: QuantizedModule, x: np.ndarray, in_fhe: bool):
+    """Execute the model's inference using Torus ML (quantized clear or FHE).
 
     Args:
         quantized_module (QuantizedModule): The quantized module representing the model.
@@ -522,11 +522,11 @@ def evaluate_module(
     train: bool = False,
     in_fhe: bool = False,
 ):
-    """Evaluate several metrics using a Torch or Concrete ML module.
+    """Evaluate several metrics using a Torch or Torus ML module.
 
     Args:
-        framework (str): The framework to evaluate, either 'concrete' or 'torch'.
-        module (Union[nn.Module, QuantizedModule]): The Torch or Concrete ML module representing
+        framework (str): The framework to evaluate, either 'torus' or 'torch'.
+        module (Union[nn.Module, QuantizedModule]): The Torch or Torus ML module representing
             the model to evaluate.
         test_loader (DataLoader): The test data loader.
         n_classes (int): The number of classes to target.
@@ -535,25 +535,25 @@ def evaluate_module(
         metric_label_prefix (Optional[str]): The label's prefix to consider when tracking the
             metrics. Default to None.
         train (bool): Indicate if the evaluation is done during training. If so, the test accuracy
-            is printed but not tracked. This parameter cannot be set while using the Concrete ML
+            is printed but not tracked. This parameter cannot be set while using the Torus ML
             framework. Default to False.
         in_fhe (bool): Indicate if the inference should be executed in FHE. This parameter cannot
             be set while using the torch framework. Default to False.
 
     Returns:
         y_preds_proba (np.ndarray): The model's predicted probabilities (quantized form for the
-            'concrete' framework).
+            'torus' framework).
     """
 
     assert framework in [
-        "concrete",
+        "torus",
         "torch",
-    ], f"Wrong framework. Expected one of 'torch' or 'concrete', got {framework}."
+    ], f"Wrong framework. Expected one of 'torch' or 'torus', got {framework}."
 
     if framework == "torch":
         assert (
             not in_fhe
-        ), "Torch models can't be executed in FHE. Either use 'concrete' or set 'in_fhe' to False."
+        ), "Torch models can't be executed in FHE. Either use 'torus' or set 'in_fhe' to False."
     else:
         assert not train, "Training can only be done using Torch models."
 
@@ -583,9 +583,9 @@ def evaluate_module(
         # truth labels
         for batch_i, (data, target) in enumerate(test_loader):
 
-            # Execute Concrete ML's inference
-            if framework == "concrete":
-                y_pred, y_pred_proba = concrete_inference(module, data.numpy(), in_fhe)
+            # Execute Torus ML's inference
+            if framework == "torus":
+                y_pred, y_pred_proba = torus_inference(module, data.numpy(), in_fhe)
 
             # Else, execute torch's inference
             else:
@@ -613,8 +613,8 @@ def evaluate_module(
             metric_id_prefix is not None and metric_label_prefix is not None
         ), "Please prove metric prefixes when executing the inference."
 
-        # If we evaluate a Concrete ML module in FHE, the inference execution time is also tracked
-        if framework == "concrete" and in_fhe:
+        # If we evaluate a Torus ML module in FHE, the inference execution time is also tracked
+        if framework == "torus" and in_fhe:
             progress.measure(
                 id=metric_id_prefix + "-execution-time-per-sample",
                 label="Execution Time per sample for " + metric_label_prefix,
@@ -632,8 +632,8 @@ def evaluate_module(
 def evaluate_pre_trained_cnn_model(dataset: str, cnn_class: type, config: dict, cli_args):
     """Evaluate the pre-trained CNN model on the data-set.
 
-    It first evaluates both the Torch and Concrete ML models in the clear bu computing their
-    accuracy score on the full data-set. Then, the Concrete ML model's inference is executed on a
+    It first evaluates both the Torch and Torus ML models in the clear bu computing their
+    accuracy score on the full data-set. Then, the Torus ML model's inference is executed on a
     sub-sample in the clear as well as in FHE in order to compute a MSE score between them.
 
     Args:
@@ -715,11 +715,11 @@ def evaluate_pre_trained_cnn_model(dataset: str, cnn_class: type, config: dict, 
 
     if cli_args.verbose:
         print("\nMax numbers of bits reached during the inference:", circuit_bitwidth)
-        print("\nEvaluating the Concrete ML model's quantized clear inference an all test samples:")
+        print("\nEvaluating the Torus ML model's quantized clear inference an all test samples:")
 
     # Evaluate the quantized clear inference using the full data-set
     evaluate_module(
-        framework="concrete",
+        framework="torus",
         module=fhe_module,
         test_loader=test_loader,
         n_classes=n_classes,
@@ -731,11 +731,11 @@ def evaluate_pre_trained_cnn_model(dataset: str, cnn_class: type, config: dict, 
     fhe_test_loader = get_data_loader(x_test, y_test, samples=cli_args.fhe_samples)
 
     if cli_args.verbose:
-        print("\nEvaluating the Concrete ML model's quantized clear inference on FHE samples:")
+        print("\nEvaluating the Torus ML model's quantized clear inference on FHE samples:")
 
     # Evaluate the quantized clear inference using a specific number of FHE samples
     q_y_preds_proba_clear = evaluate_module(
-        framework="concrete",
+        framework="torus",
         module=fhe_module,
         test_loader=fhe_test_loader,
         n_classes=n_classes,
@@ -745,11 +745,11 @@ def evaluate_pre_trained_cnn_model(dataset: str, cnn_class: type, config: dict, 
 
     if not cli_args.dont_execute_in_fhe:
         if cli_args.verbose:
-            print("\nEvaluating the Concrete ML model's inference in FHE on FHE samples:")
+            print("\nEvaluating the Torus ML model's inference in FHE on FHE samples:")
 
         # Evaluate the FHE inference using a specific number of FHE samples
         q_y_preds_proba_fhe = evaluate_module(
-            framework="concrete",
+            framework="torus",
             module=fhe_module,
             test_loader=fhe_test_loader,
             n_classes=n_classes,

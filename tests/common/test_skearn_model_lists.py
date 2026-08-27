@@ -1,4 +1,4 @@
-"""Tests lists of models in Concrete ML."""
+"""Tests lists of models in Torus ML."""
 
 from torus.ml.pytest.utils import MODELS_AND_DATASETS, UNIQUE_MODELS_AND_DATASETS
 from torus.ml.sklearn import (
@@ -27,7 +27,7 @@ from torus.ml.sklearn.xgb import XGBClassifier, XGBRegressor
 
 
 def test_get_sklearn_models():
-    """List all available models in Concrete ML."""
+    """List all available models in Torus ML."""
     all_models = _get_sklearn_all_models()
     linear_models = _get_sklearn_linear_models()
     tree_models = _get_sklearn_tree_models()

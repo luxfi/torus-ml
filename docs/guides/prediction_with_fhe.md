@@ -1,6 +1,6 @@
 # Prediction with FHE
 
-This document explains how to perform encryption, execution, and decryption of Fully Homomorphic Encryption (FHE) using one function call of the Concrete ML API, or multiple function calls separately.
+This document explains how to perform encryption, execution, and decryption of Fully Homomorphic Encryption (FHE) using one function call of the Torus ML API, or multiple function calls separately.
 
 The APIs are different for the following:
 
@@ -11,9 +11,9 @@ The APIs are different for the following:
 
 ### Using one function
 
-All Concrete ML built-in models have a single `predict` method that performs the encryption, FHE execution, and decryption with only one function call.
+All Torus ML built-in models have a single `predict` method that performs the encryption, FHE execution, and decryption with only one function call.
 
-The following example shows how to create a synthetic data-set and how to use it to train a LogisticRegression model from Concrete ML.
+The following example shows how to create a synthetic data-set and how to use it to train a LogisticRegression model from Torus ML.
 
 ```python
 from sklearn.datasets import make_classification
@@ -38,7 +38,7 @@ y_pred_clear = model.predict(x_test)
 fhe_circuit = model.compile(x_train)
 ```
 
-Concrete ML models follow the same API as scikit-learn models, transparently performing the steps related to encryption for convenience.
+Torus ML models follow the same API as scikit-learn models, transparently performing the steps related to encryption for convenience.
 
 <!--pytest-codeblocks:cont-->
 

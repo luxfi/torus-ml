@@ -84,8 +84,8 @@ jobs:
           ./script/make_utils/setup_os_deps.sh
           make setup_env
           source .venv/bin/activate
-          CP_VERSION=$(pip freeze | grep concrete-python)
-          pip uninstall -y concrete-python
+          CP_VERSION=$(pip freeze | grep torus-fhe)
+          pip uninstall -y torus-fhe
           pip install --extra-index-url https://pypi.lux.network/gpu ${CP_VERSION}
 
       - name: Refresh Notebooks

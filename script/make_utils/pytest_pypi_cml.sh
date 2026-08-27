@@ -60,15 +60,15 @@ if ${USE_PIP_WHEEL}; then
     poetry build -f wheel
 
     # Install the dependencies as PyPI would do using the wheel file as well as the given
-    # Concrete-Python version
+    # Torus-Python version
     PYPI_WHEEL=$(find dist -type f -name "*.whl")
-    python -m pip install --extra-index-url https://pypi.zama.ai/cpu "${PYPI_WHEEL}"
+    python -m pip install --extra-index-url https://pypi.lux.ai/cpu "${PYPI_WHEEL}"
 
 else
     if [ -z "${VERSION}" ]; then
-        python -m pip install concrete-ml[dev]
+        python -m pip install torus-ml[dev]
     else
-        python -m pip install concrete-ml[dev]=="${VERSION}"
+        python -m pip install torus-ml[dev]=="${VERSION}"
     fi
 fi
 

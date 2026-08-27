@@ -5,5 +5,5 @@ run_sh:
 	@./run.sh
 
 load_to_cml:
-	@echo "Loading and compiling the model with Concrete ML..."
+	@echo "Loading and compiling the model with Torus ML..."
 	@python load_to_cml.py

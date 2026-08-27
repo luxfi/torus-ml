@@ -20,7 +20,7 @@ from torus.ml.torch.compile import compile_torch_model
 @pytest.mark.parametrize(
     "keepdims", [pytest.param(keepdims, id=f"keepdims-{keepdims}") for keepdims in [True, False]]
 )
-# In Concrete ML, we consider that all inputs' first dimension should be a batch size
+# In Torus ML, we consider that all inputs' first dimension should be a batch size
 # even in single batch cases. This is why the following test parameters are considering axes that
 # are sometimes equal to the input size's dimension, as the batch size is added within the
 # test itself.

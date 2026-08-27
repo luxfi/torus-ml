@@ -36,7 +36,7 @@ phases:
           commands:
             - apt install -y python3.9 python3.9-distutils
 
-      - name: InstallConcreteML
+      - name: InstallTorusML
         action: ExecuteBash
         inputs:
           commands:

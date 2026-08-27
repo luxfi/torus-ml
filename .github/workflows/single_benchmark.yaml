@@ -159,7 +159,7 @@ jobs:
             # Needed for some reason
             make setup_env
             source ./.venv/bin/activate
-            python -m pip show concrete-python
+            python -m pip show torus-fhe
 
       # Now we get our most up to date version
       - name: Run the benchmark command

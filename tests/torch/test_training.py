@@ -109,7 +109,7 @@ def test_sgd_training_manual(
     get_device, enforce_gpu_determinism
 ):  # pylint: disable=unused-argument
     """Trains a logistic regression with SGD in torch and quantized."""
-    # Train on the bias when multi output is available in concrete
+    # Train on the bias when multi output is available in torus
     # FIXME: https://github.com/luxfi/torus-ml-internal/issues/4131
 
     print("test_sgd_training_manual", get_device)
