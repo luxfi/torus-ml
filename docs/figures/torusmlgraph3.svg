@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" font-family="system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+  <style>
+    .card{fill:#fff;stroke:#d7dce3;stroke-width:2}
+    .title{font-size:52px;font-weight:700;fill:#11161d}
+    .rule{fill:#4c6ef5}
+    .box{stroke:#1b2430;stroke-width:3}
+    .art{fill:#eef2f7}
+    .dat{fill:#d8f3e0}
+    .enc{fill:#fbdcdc}
+    .key{fill:#e2e5ea}
+    .prim{fill:#2b3a67}
+    .lbl{font-size:24px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .lblw{font-size:30px;font-weight:700;fill:#fff;text-anchor:middle}
+    .cap{font-size:26px;font-weight:700;fill:#11161d;text-anchor:middle}
+    .capl{font-size:26px;font-weight:700;fill:#11161d}
+    .node{fill:#d4d9e0;stroke:#1b2430;stroke-width:3}
+    .flow{stroke:#1b2430;stroke-width:4;fill:none;marker-end:url(#a)}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1b2430"/>
+    </marker>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#fff"/>
+  <text class="title" x="60" y="96">Client trusted device</text>
+  <rect class="rule" x="60" y="128" width="1800" height="8"/>
+  <rect class="card" x="60" y="150" width="1800" height="860"/>
+
+  <text class="capl" x="110" y="222">Get from server</text>
+  <circle class="node" cx="345" cy="212" r="26"/>
+  <path class="flow" d="M345 248 V315"/>
+  <rect class="box art" x="232" y="325" width="223" height="103"/>
+  <text class="lbl" x="343" y="383">Client.zip</text>
+  <path class="flow" d="M343 428 V500"/>
+
+  <rect class="box prim" x="280" y="510" width="405" height="110"/>
+  <text class="lblw" x="482" y="552">Torus stack ::</text>
+  <text class="lblw" x="482" y="592">key generator</text>
+
+  <path class="flow" d="M610 510 V438"/>
+  <rect class="box art" x="497" y="325" width="225" height="103"/>
+  <text class="lbl" x="609" y="383">User evaluation key</text>
+  <path class="flow" d="M609 325 V248"/>
+  <circle class="node" cx="609" cy="212" r="26"/>
+  <text class="capl" x="648" y="222">Send to server</text>
+
+  <path class="flow" d="M685 566 H792"/>
+  <rect class="box key" x="802" y="540" width="133" height="60"/>
+  <text class="lbl" x="868" y="578">Private key</text>
+
+  <path class="flow" d="M935 570 H1015 V375 H1113"/>
+  <path class="flow" d="M1015 570 V765 H1113"/>
+
+  <rect class="box dat" x="880" y="205" width="113" height="95"/>
+  <text class="lbl" x="936" y="260">Data</text>
+  <path class="flow" d="M936 300 V340 H1113"/>
+
+  <rect class="box prim" x="1123" y="297" width="277" height="111"/>
+  <text class="lblw" x="1261" y="340">Torus stack ::</text>
+  <text class="lblw" x="1261" y="380">encrypt</text>
+
+  <path class="flow" d="M1400 352 H1512"/>
+  <rect class="box enc" x="1522" y="320" width="133" height="66"/>
+  <text class="lbl" x="1588" y="346">Encrypted</text>
+  <text class="lbl" x="1588" y="374">data</text>
+  <path class="flow" d="M1588 320 V248"/>
+  <circle class="node" cx="1588" cy="212" r="26"/>
+  <text class="capl" x="1627" y="222">Send to server</text>
+
+  <rect class="box art" x="1148" y="520" width="225" height="97"/>
+  <text class="lbl" x="1260" y="576">Client.zip</text>
+  <path class="flow" d="M1260 520 V418"/>
+  <path class="flow" d="M1260 617 V720"/>
+
+  <rect class="box prim" x="1123" y="730" width="277" height="111"/>
+  <text class="lblw" x="1261" y="773">Torus stack ::</text>
+  <text class="lblw" x="1261" y="813">decrypt</text>
+
+  <path class="flow" d="M1512 786 H1410"/>
+  <rect class="box enc" x="1522" y="750" width="133" height="66"/>
+  <text class="lbl" x="1588" y="776">Encrypted</text>
+  <text class="lbl" x="1588" y="804">result</text>
+  <path class="flow" d="M1588 876 V826"/>
+  <circle class="node" cx="1588" cy="912" r="26"/>
+  <text class="capl" x="1627" y="905">Receive from</text>
+  <text class="capl" x="1627" y="937">server</text>
+
+  <path class="flow" d="M1123 800 H1000 V860"/>
+  <rect class="box dat" x="880" y="865" width="113" height="95"/>
+  <text class="lbl" x="936" y="920">Results</text>
+</svg>
