@@ -36,21 +36,21 @@ This section pertains to models that are compiled using the `sklearn`-style buil
 To use the CUDA-enabled backend, install the GPU-enabled Torus compiler:
 
 ```bash
-pip install --extra-index-url https://pypi.lux.network/gpu torus-fhe
+pip install torus-fhe
 ```
 
 If you already have an existing version of `torus-fhe` installed, it will not be re-installed automatically. In that case, manually uninstall the current version and then install the GPU-enabled version:
 
 ```bash
 pip uninstall torus-fhe
-pip install --extra-index-url https://pypi.lux.network/gpu torus-fhe
+pip install torus-fhe
 ```
 
 To switch back to the CPU-only version of the compiler, change the index-url to the CPU-only repository or remove the index-url parameter:
 
 ```bash
 pip uninstall torus-fhe
-pip install --extra-index-url https://pypi.lux.network/cpu torus-fhe
+pip install torus-fhe
 ```
 
 ## Checking GPU can be enabled
