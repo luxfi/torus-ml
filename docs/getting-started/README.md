@@ -1,6 +1,6 @@
 # What is Torus ML?
 
-<figure><img src="../.gitbook/assets/doc_header_CML.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/torus_doc_header.svg" alt=""><figcaption></figcaption></figure>
 
 Torus ML is an open source, privacy-preserving, machine learning framework based on Fully Homomorphic Encryption (FHE). It enables data scientists without any prior knowledge of cryptography to perform:
 
