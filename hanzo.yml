@@ -1,0 +1,8 @@
+# Native CI for torus-ml, on the git.hanzo.ai runner fleet.
+test:
+  - name: package
+    run: |
+      set -e
+      pip install poetry
+      poetry install --no-interaction
+      poetry run pytest -x -q tests
