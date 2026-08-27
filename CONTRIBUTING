@@ -80,7 +80,7 @@ You should rebase on top of the repository's `main` branch before you create you
 
 ```shell
 # Add the Torus ML repository as remote, named "upstream" 
-git remote add upstream git@github.com:lux-ai/torus-ml.git
+git remote add upstream git@github.com:luxfi/torus-ml.git
 
 # Fetch all last branches and changes from Torus ML
 git fetch upstream
@@ -103,4 +103,4 @@ You can learn more about rebasing [here](https://git-scm.com/docs/git-rebase).
 
 ## 6. Open a pull-request
 
-You can now open a pull-request [in the Torus ML repository](https://github.com/lux-ai/torus-ml/pulls). For more details on how to do so from a forked repository, please read GitHub's [official documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) on the subject.
+You can now open a pull-request [in the Torus ML repository](https://github.com/luxfi/torus-ml/pulls). For more details on how to do so from a forked repository, please read GitHub's [official documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) on the subject.

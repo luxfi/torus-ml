@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Fix OMP issues for macOS Intel, https://github.com/lux-ai/torus-ml-internal/issues/3951
+# Fix OMP issues for macOS Intel, an internal tracker issue
 # This should be avoided for macOS with arm64 architecture
 
 set -e
